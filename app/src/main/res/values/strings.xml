@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">pubQuizRemote</string>
+
+
+    <string name="buttonSignIn">Sign in with Google</string>
+
+    <string name="webClientId">905660080461-pfde0t9t3lrpkvppd2jakhroqoiqesur.apps.googleusercontent.com</string>
+
 </resources>
