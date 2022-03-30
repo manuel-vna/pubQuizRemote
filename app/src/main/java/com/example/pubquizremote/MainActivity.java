@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
     Button signInButton;
-    private final static int RC_SIGN_IN = 0;
+    //private final static int RC_SIGN_IN = 0;
     FirebaseAuth auth;
 
 
