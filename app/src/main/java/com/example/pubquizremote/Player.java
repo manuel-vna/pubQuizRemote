@@ -13,6 +13,11 @@ public class Player {
     private String answer7;
     private String answer8;
 
+    public Player(String name) {
+        this(name,null,null,null,null,null,null,null,null,null);
+
+    }
+
 
     public Player(String name, String points, String answer1, String answer2, String answer3, String answer4, String answer5, String answer6, String answer7, String answer8) {
         this.name = name;
