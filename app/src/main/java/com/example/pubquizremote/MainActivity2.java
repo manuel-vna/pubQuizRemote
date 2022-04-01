@@ -17,6 +17,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity2 extends AppCompatActivity {
 
     TextView textView2;
@@ -33,6 +36,8 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         auth = FirebaseAuth.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://pub-quiz-remote-default-rtdb.europe-west1.firebasedatabase.app");
+        String uid = auth.getCurrentUser().getUid();
 
         textView2 = findViewById(R.id.textView2);
         buttonLogout = findViewById(R.id.buttonLogout);
@@ -59,12 +64,10 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Log.i("Debug_A", "Hello");
-
-                FirebaseDatabase database = FirebaseDatabase.getInstance("https://pub-quiz-remote-default-rtdb.europe-west1.firebasedatabase.app");
-                String uid = auth.getCurrentUser().getUid();
-                DatabaseReference ref_uid = database.getReference(uid);
-                ref_uid.child("players").child(uid).setValue("answer1", editTextAnswerTest.getText().toString());
+                DatabaseReference ref_uid = database.getReference("players");
+                Map map = new HashMap();
+                map.put("answer2", editTextAnswerTest.getText().toString());
+                ref_uid.child(uid).updateChildren(map);
 
             }
         });
