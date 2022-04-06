@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseUser user = auth.getCurrentUser();
         if(user != null){
-            Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+            Intent intent = new Intent(getApplicationContext(),LoggedInHomeActivity.class);
             startActivity(intent);
         }
     }
@@ -124,11 +124,12 @@ public class MainActivity extends AppCompatActivity {
                             FirebaseUser user = auth.getCurrentUser();
 
                             //save player in database
-                            Player player = new Player(user.getDisplayName());
+                            Player player = new Player(user.getDisplayName(),"0");
                             String uid = user.getUid();
                             ref_players.child(uid).setValue(player);
 
-                            Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+                            //Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+                            Intent intent = new Intent(getApplicationContext(),LoggedInHomeActivity.class);
                             startActivity(intent);
 
                         } else {

@@ -13,8 +13,8 @@ public class Player {
     private String answer7;
     private String answer8;
 
-    public Player(String name) {
-        this(name,null,null,null,null,null,null,null,null,null);
+    public Player(String name,String points) {
+        this(name,points,null,null,null,null,null,null,null,null);
 
     }
 

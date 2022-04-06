@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PubQuizRemote">
         <activity
+            android:name=".LoggedInHomeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_logged_in_home"
+            android:theme="@style/Theme.PubQuizRemote.NoActionBar" />
+        <activity
             android:name=".MainActivity2"
             android:exported="false" />
         <activity
