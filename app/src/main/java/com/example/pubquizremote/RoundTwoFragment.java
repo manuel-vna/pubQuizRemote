@@ -1,4 +1,4 @@
-package com.example.pubquizremote.ui.roundTwo;
+package com.example.pubquizremote;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,24 +16,14 @@ import com.example.pubquizremote.databinding.FragmentRoundTwoBinding;
 
 public class RoundTwoFragment extends Fragment {
 
-    private RoundTwoViewModel RoundTwoViewModel;
     private FragmentRoundTwoBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        RoundTwoViewModel =
-                new ViewModelProvider(this).get(RoundTwoViewModel.class);
 
         binding = FragmentRoundTwoBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textSlideshow;
-        RoundTwoViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
         return root;
     }
 

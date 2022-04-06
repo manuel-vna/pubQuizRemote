@@ -7,19 +7,32 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.pubquizremote.ui.home.HomeFragment"
+        android:name="com.example.pubquizremote.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_round_one"
-        android:name="com.example.pubquizremote.ui.roundOne.RoundOneFragment"
+        android:name="com.example.pubquizremote.RoundOneFragment"
         android:label="@string/menu_roundOne"
-        tools:layout="@layout/fragment_round_one" />
+        tools:layout="@layout/fragment_round_one" >
+        <action
+            android:id="@+id/action_nav_round_one_to_fullScreenImageFragment"
+            app:destination="@id/fullScreenImageFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_round_two"
-        android:name="com.example.pubquizremote.ui.roundTwo.RoundTwoFragment"
+        android:name="com.example.pubquizremote.RoundTwoFragment"
         android:label="@string/menu_roundTwo"
         tools:layout="@layout/fragment_round_two" />
+    <fragment
+        android:id="@+id/fullScreenImageFragment"
+        android:name="com.example.pubquizremote.FullScreenImageFragment"
+        android:label="full_screen_image_fragment"
+        tools:layout="@layout/full_screen_image_fragment" >
+        <action
+            android:id="@+id/action_fullScreenImageFragment_to_nav_round_one"
+            app:destination="@id/nav_round_one" />
+    </fragment>
 </navigation>
