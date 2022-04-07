@@ -92,44 +92,91 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3" />
+        app:layout_constraintGuide_percent="0.26" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelinePicRow2Top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.33" />
+        app:layout_constraintGuide_percent="0.29" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelinePicRow2Bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.51" />
+        app:layout_constraintGuide_percent="0.47" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelinePicRow3Top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.54" />
+        app:layout_constraintGuide_percent="0.5" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelinePicRow3Bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.72" />
+        app:layout_constraintGuide_percent="0.68" />
 
     <ImageView
-        android:id="@+id/Round1Picture1"
+        android:id="@+id/pic11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/guidelinePicRow1Top"
         app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalMiddle"
         app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeft"
         app:layout_constraintTop_toTopOf="@+id/guidelinePicRow1Bottom" />
+
+    <ImageView
+        android:id="@+id/pic12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/guidelinePicRow1Top"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineVerticalMiddle"
+        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow1Bottom" />
+
+    <ImageView
+        android:id="@+id/pic13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/guidelinePicRow2Bottom"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalMiddle"
+        app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeft"
+        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow2Top" />
+
+    <ImageView
+        android:id="@+id/pic14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/guidelinePicRow2Bottom"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineVerticalMiddle"
+        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow2Top" />
+
+    <ImageView
+        android:id="@+id/pic15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/guidelinePicRow3Bottom"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalMiddle"
+        app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeft"
+        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow3Top" />
+
+    <ImageView
+        android:id="@+id/pic16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/guidelinePicRow3Bottom"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineVerticalMiddle"
+        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow3Top" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
