@@ -25,6 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation='horizontal'
+        android:checkedButton="@+id/radioButtonOne"
         app:layout_constraintBottom_toTopOf="@+id/guidelineTableTop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.435"
@@ -34,13 +35,15 @@
             android:id="@+id/radioButtonOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/radioButtonOne" />
+            android:text="@string/radioButtonOne"
+            android:tag="radioButtonOne"/>
 
         <RadioButton
             android:id="@+id/radioButtonTwo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/radioButtonTwo" />
+            android:text="@string/radioButtonTwo"
+            android:tag="radioButtonTwo"/>
 
 
     </RadioGroup>
@@ -123,58 +126,64 @@
         app:layout_constraintGuide_percent="0.68" />
 
     <ImageView
-        android:id="@+id/pic11"
+        android:id="@+id/pic1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/guidelinePicRow1Top"
         app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalMiddle"
         app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeft"
-        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow1Bottom" />
+        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow1Bottom"
+        android:tag="pic1"/>
 
     <ImageView
-        android:id="@+id/pic12"
+        android:id="@+id/pic2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/guidelinePicRow1Top"
         app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineVerticalMiddle"
-        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow1Bottom" />
+        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow1Bottom"
+        android:tag="pic2"/>
 
     <ImageView
-        android:id="@+id/pic13"
+        android:id="@+id/pic3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/guidelinePicRow2Bottom"
         app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalMiddle"
         app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeft"
-        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow2Top" />
+        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow2Top"
+        android:tag="pic3"/>
 
     <ImageView
-        android:id="@+id/pic14"
+        android:id="@+id/pic4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/guidelinePicRow2Bottom"
         app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineVerticalMiddle"
-        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow2Top" />
+        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow2Top"
+        android:tag="pic4"/>
 
     <ImageView
-        android:id="@+id/pic15"
+        android:id="@+id/pic5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/guidelinePicRow3Bottom"
         app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalMiddle"
         app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeft"
-        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow3Top" />
+        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow3Top"
+        android:tag="pic5"/>
 
     <ImageView
-        android:id="@+id/pic16"
+        android:id="@+id/pic6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/guidelinePicRow3Bottom"
         app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineVerticalMiddle"
-        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow3Top" />
+        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow3Top"
+        android:tag="pic6"/>
 
 
 
