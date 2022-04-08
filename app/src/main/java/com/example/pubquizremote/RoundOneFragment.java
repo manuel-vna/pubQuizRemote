@@ -35,6 +35,9 @@ public class RoundOneFragment extends Fragment implements View.OnClickListener {
     String uid;
     private String link;
     HashMap<String, String> imageUrls = new HashMap<String, String>();
+    final String[] questionsPage1 = {"11", "12", "13", "14", "15", "16"};
+    final String[] questionsPage2 = {"21", "22", "23", "24", "25", "26"};
+    String[] questions;
     private int pageButtonId;
     private String page;
 
@@ -64,9 +67,10 @@ public class RoundOneFragment extends Fragment implements View.OnClickListener {
 
         Boolean page1 = binding.radioButtonOne.isChecked();
         Boolean page2 = binding.radioButtonOne.isChecked();
-        Log.w("Debug_A","Output: "+String.valueOf(page1));
 
-        load_images_from_db(page1,page2);
+
+        load_images_from_db(questionsPage1);
+
 
         binding.pic1.setOnClickListener(this);
         binding.pic2.setOnClickListener(this);
@@ -80,16 +84,14 @@ public class RoundOneFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    void load_images_from_db(Boolean page1,Boolean page2){
+    void load_images_from_db(String[] questions) {
 
-        String[] questions = {"1","2","3","4","5","6"}; //,"21","22","23","24","25","26"};
-        for (String s: questions) {
+        for (String s : questions) {
 
             FirebaseDatabase database = FirebaseDatabase.getInstance("https://pub-quiz-remote-default-rtdb.europe-west1.firebasedatabase.app");
             auth = FirebaseAuth.getInstance();
             String uid = auth.getCurrentUser().getUid();
-            //DatabaseReference ref_round_one = database.getReference("question_answer_pairs").child("1").child(s).child("picture");
-            DatabaseReference ref_round_one = database.getReference("question_answer_pairs").child("1").child("1"+s);
+            DatabaseReference ref_round_one = database.getReference("question_answer_pairs").child("1").child(s);
             ref_round_one.addListenerForSingleValueEvent(new ValueEventListener() {
 
                 @Override
@@ -98,57 +100,57 @@ public class RoundOneFragment extends Fragment implements View.OnClickListener {
                     link = dataSnapshot.child("picture").getValue(String.class);
                     page = dataSnapshot.child("page").getValue().toString();
 
-                    //if (page.equals("1")) {
-                    if (page1) {
-                        Log.w("Debug_A","Link1: "+link);
-                        switch (s) {
-                            case "1":
-                                Picasso.get().load(link).into(binding.pic1);
-                                imageUrls.put("pic1", link);
-                            case "2":
-                                Picasso.get().load(link).into(binding.pic2);
-                                imageUrls.put("pic2", link);
-                            case "3":
-                                Picasso.get().load(link).into(binding.pic3);
-                                imageUrls.put("pic3", link);
-                            case "4":
-                                Picasso.get().load(link).into(binding.pic4);
-                                imageUrls.put("pic4", link);
-                            case "5":
-                                Picasso.get().load(link).into(binding.pic5);
-                                imageUrls.put("pic5", link);
-                            case "6":
-                                Picasso.get().load(link).into(binding.pic6);
-                                imageUrls.put("pic6", link);
-                        }
 
-                    }
-                    //else if (page.equals("2")){
-                    else if (page2){
-                        Log.w("Debug_A","Link2: "+link);
-                        switch (s) {
-                            case "1":
-                                Picasso.get().load(link).into(binding.pic1);
-                                imageUrls.put("pic1", link);
-                            case "2":
-                                Picasso.get().load(link).into(binding.pic2);
-                                imageUrls.put("pic2", link);
-                            case "3":
-                                Picasso.get().load(link).into(binding.pic3);
-                                imageUrls.put("pic3", link);
-                            case "4":
-                                Picasso.get().load(link).into(binding.pic4);
-                                imageUrls.put("pic4", link);
-                            case "5":
-                                Picasso.get().load(link).into(binding.pic5);
-                                imageUrls.put("pic5", link);
-                            case "6":
-                                Picasso.get().load(link).into(binding.pic6);
-                                imageUrls.put("pic6", link);
-                        }
-                    }
-                    else {
-                        Toast.makeText(getContext(), "Bitte oben eine Seite auswählen", Toast.LENGTH_SHORT).show();
+                    Log.w("Debug_A", "Link1: " + link);
+                    switch (s) {
+                        case "11":
+                            Picasso.get().load(link).into(binding.pic1);
+                            imageUrls.put("pic1", link);
+                            break;
+                        case "12":
+                            Picasso.get().load(link).into(binding.pic2);
+                            imageUrls.put("pic2", link);
+                            break;
+                        case "13":
+                            Picasso.get().load(link).into(binding.pic3);
+                            imageUrls.put("pic3", link);
+                            break;
+                        case "14":
+                            Picasso.get().load(link).into(binding.pic4);
+                            imageUrls.put("pic4", link);
+                            break;
+                        case "15":
+                            Picasso.get().load(link).into(binding.pic5);
+                            imageUrls.put("pic5", link);
+                            break;
+                        case "16":
+                            Picasso.get().load(link).into(binding.pic6);
+                            imageUrls.put("pic6", link);
+                            break;
+                        case "21":
+                            Picasso.get().load(link).into(binding.pic1);
+                            imageUrls.put("pic1", link);
+                            break;
+                        case "22":
+                            Picasso.get().load(link).into(binding.pic2);
+                            imageUrls.put("pic2", link);
+                            break;
+                        case "23":
+                            Picasso.get().load(link).into(binding.pic3);
+                            imageUrls.put("pic3", link);
+                            break;
+                        case "24":
+                            Picasso.get().load(link).into(binding.pic4);
+                            imageUrls.put("pic4", link);
+                            break;
+                        case "25":
+                            Picasso.get().load(link).into(binding.pic5);
+                            imageUrls.put("pic5", link);
+                            break;
+                        case "26":
+                            Picasso.get().load(link).into(binding.pic6);
+                            imageUrls.put("pic6", link);
+                            break;
                     }
 
                 }
@@ -159,11 +161,11 @@ public class RoundOneFragment extends Fragment implements View.OnClickListener {
                     // we are showing that error message in toast
                     Log.w("Debug_A", "error: loading image", databaseError.toException());
                 }
+
             });
-        };
+        }
 
     }
-
 
 
     @Override
@@ -173,12 +175,12 @@ public class RoundOneFragment extends Fragment implements View.OnClickListener {
         Log.w("Debug_A","Tag: "+tag);
 
         if (tag.equals("radioButtonOne")) {
-            Toast.makeText(getContext(), "Page 1 clicked", Toast.LENGTH_SHORT).show();
-            load_images_from_db(true,false);
+            Toast.makeText(getContext(), "Wechsel zu Seite 1", Toast.LENGTH_SHORT).show();
+            load_images_from_db(questionsPage1);
         }
         else if (tag.equals("radioButtonTwo")) {
-            Toast.makeText(getContext(), "Page 2 clicked", Toast.LENGTH_SHORT).show();
-            load_images_from_db(false,true);
+            Toast.makeText(getContext(), "Wechsel zu Seite 2", Toast.LENGTH_SHORT).show();
+            load_images_from_db(questionsPage2);
         }
         else {
             Navigation.findNavController(getView()).navigate(R.id.action_nav_round_one_to_fullScreenImageFragment);

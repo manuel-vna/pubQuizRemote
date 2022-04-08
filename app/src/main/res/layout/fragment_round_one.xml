@@ -127,63 +127,63 @@
 
     <ImageView
         android:id="@+id/pic1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:tag="pic1"
         app:layout_constraintBottom_toTopOf="@+id/guidelinePicRow1Top"
         app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalMiddle"
         app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeft"
-        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow1Bottom"
-        android:tag="pic1"/>
+        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow1Bottom" />
 
     <ImageView
         android:id="@+id/pic2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:tag="pic2"
         app:layout_constraintBottom_toTopOf="@+id/guidelinePicRow1Top"
         app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineVerticalMiddle"
-        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow1Bottom"
-        android:tag="pic2"/>
+        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow1Bottom" />
 
     <ImageView
         android:id="@+id/pic3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:tag="pic3"
         app:layout_constraintBottom_toTopOf="@+id/guidelinePicRow2Bottom"
         app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalMiddle"
         app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeft"
-        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow2Top"
-        android:tag="pic3"/>
+        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow2Top" />
 
     <ImageView
         android:id="@+id/pic4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:tag="pic4"
         app:layout_constraintBottom_toTopOf="@+id/guidelinePicRow2Bottom"
         app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineVerticalMiddle"
-        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow2Top"
-        android:tag="pic4"/>
+        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow2Top" />
 
     <ImageView
         android:id="@+id/pic5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:tag="pic5"
         app:layout_constraintBottom_toTopOf="@+id/guidelinePicRow3Bottom"
         app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalMiddle"
         app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeft"
-        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow3Top"
-        android:tag="pic5"/>
+        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow3Top" />
 
     <ImageView
         android:id="@+id/pic6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:tag="pic6"
         app:layout_constraintBottom_toTopOf="@+id/guidelinePicRow3Bottom"
         app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineVerticalMiddle"
-        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow3Top"
-        android:tag="pic6"/>
+        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow3Top" />
 
 
 
