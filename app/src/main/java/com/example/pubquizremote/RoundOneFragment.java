@@ -37,7 +37,6 @@ public class RoundOneFragment extends Fragment implements View.OnClickListener {
     HashMap<String, String> imageUrls = new HashMap<String, String>();
     private int pageButtonId;
     private String page;
-    //private RadioButton selectedPageButton;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -74,17 +73,16 @@ public class RoundOneFragment extends Fragment implements View.OnClickListener {
             auth = FirebaseAuth.getInstance();
             String uid = auth.getCurrentUser().getUid();
             //DatabaseReference ref_round_one = database.getReference("question_answer_pairs").child("1").child(s).child("picture");
-            DatabaseReference ref_round_one = database.getReference("question_answer_pairs").child("1").child(s);
+            DatabaseReference ref_round_one = database.getReference("question_answer_pairs").child("1").child("1"+s);
             ref_round_one.addListenerForSingleValueEvent(new ValueEventListener() {
 
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    //link = dataSnapshot.getValue(String.class);
                     link = dataSnapshot.child("picture").getValue(String.class);
-                    //page = dataSnapshot.child("page").getValue(String.class);
+                    page = dataSnapshot.child("page").getValue().toString();
 
-                    //if (page.equals("1")) {
+                    if (page.equals("1")) {
                         switch (s) {
                             case "1":
                                 Picasso.get().load(link).into(binding.pic1);
@@ -105,7 +103,7 @@ public class RoundOneFragment extends Fragment implements View.OnClickListener {
                                 Picasso.get().load(link).into(binding.pic6);
                                 imageUrls.put("pic16", link);
                         }
-                 /*
+
                 }
                     else if (page.equals("2")){
                         switch (s) {
@@ -132,7 +130,6 @@ public class RoundOneFragment extends Fragment implements View.OnClickListener {
                     else {
                         Toast.makeText(getContext(), "Bitte oben eine Seite auswählen", Toast.LENGTH_SHORT).show();
                     }
-                    */
 
                 }
 
