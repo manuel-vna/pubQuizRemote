@@ -26,4 +26,13 @@
     <string name="radioButtonFive">5.</string>
     <string name="radioButtonSix">6.</string>
 
+    <string name="PicNoOne">1</string>
+    <string name="PicNoTwo">2</string>
+    <string name="PicNoThree">3</string>
+    <string name="PicNoFour">4</string>
+    <string name="PicNoFive">5</string>
+    <string name="PicNoSix">6</string>
+
+    <string name="UserSaveAnswers">Antworten abschicken</string>
+
 </resources>
