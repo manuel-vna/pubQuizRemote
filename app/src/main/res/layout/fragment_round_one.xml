@@ -159,8 +159,10 @@
         android:tag="pic5"
         app:layout_constraintBottom_toTopOf="@+id/guidelinePicRow3Bottom"
         app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalMiddle"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeft"
-        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow3Top" />
+        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow3Top"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/pic6"
@@ -228,18 +230,17 @@
 
     <TextView
         android:id="@+id/Label1"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
         android:gravity="center"
         android:text=""
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/Label2"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/spinnerAnswerOptions1"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerAnswerOptions1"
         app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeft"
-        app:layout_constraintTop_toBottomOf="@+id/pic5"
-        tools:text="Abcdef" />
+        tools:text="1" />
 
     <TextView
         android:id="@+id/Label2"
@@ -248,12 +249,12 @@
         android:gravity="center"
         android:text=""
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/Label3"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/spinnerAnswerOptions2"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerAnswerOptions2"
         app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeft"
-        app:layout_constraintTop_toBottomOf="@+id/Label1"
-        tools:text="Abcdef" />
+        tools:layout_editor_absoluteX="48dp"
+        tools:text="2" />
 
     <TextView
         android:id="@+id/Label3"
@@ -262,12 +263,11 @@
         android:gravity="center"
         android:text=""
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/Label4"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/spinnerAnswerOptions3"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerAnswerOptions3"
         app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeft"
-        app:layout_constraintTop_toBottomOf="@+id/Label2"
-        tools:text="Excfr" />
+        tools:text="3" />
 
     <TextView
         android:id="@+id/Label4"
@@ -276,12 +276,11 @@
         android:gravity="center"
         android:text=""
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/Label5"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/spinnerAnswerOptions4"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerAnswerOptions4"
         app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeft"
-        app:layout_constraintTop_toBottomOf="@+id/Label3"
-        tools:text="sfgher" />
+        tools:text="4" />
 
     <TextView
         android:id="@+id/Label5"
@@ -290,28 +289,26 @@
         android:gravity="center"
         android:text=""
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/Label6"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/spinnerAnswerOptions5"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerAnswerOptions5"
         app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeft"
-        app:layout_constraintTop_toBottomOf="@+id/Label4"
-        tools:text="fgzres" />
+        tools:text="5" />
 
     <TextView
         android:id="@+id/Label6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
         android:gravity="center"
         android:text=""
-
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/UserSaveAnswers"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/spinnerAnswerOptions6"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerAnswerOptions6"
         app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeft"
-        app:layout_constraintTop_toBottomOf="@+id/Label5"
-        tools:text="dspögfjirspg" />
+        tools:layout_editor_absoluteX="106dp"
+        tools:layout_editor_absoluteY="66dp"
+        tools:text="6" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -324,6 +321,7 @@
         android:id="@+id/UserSaveAnswers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:tag="UserSaveAnswers"
         android:text="@string/UserSaveAnswers"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
@@ -331,54 +329,72 @@
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <Spinner
-        android:id="@+id/spinnerAnswerOptions11"
+        android:id="@+id/spinnerAnswerOptions1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerAnswerOptions12"
-        app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalRight"
-        app:layout_constraintTop_toBottomOf="@+id/PicNoSix" />
+        app:layout_constraintBottom_toTopOf="@+id/spinnerAnswerOptions2"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeftTwo"
+        app:layout_constraintTop_toBottomOf="@+id/pic5" /><![CDATA[
+
+    " />
+
+    ]]>
 
     <Spinner
-        android:id="@+id/spinnerAnswerOptions12"
+        android:id="@+id/spinnerAnswerOptions2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerAnswerOptions13"
-        app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalRight"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerAnswerOptions11" />
+        app:layout_constraintBottom_toTopOf="@+id/spinnerAnswerOptions3"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeftTwo"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAnswerOptions1" />
 
     <Spinner
-        android:id="@+id/spinnerAnswerOptions13"
+        android:id="@+id/spinnerAnswerOptions3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerAnswerOptions14"
-        app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalRight"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerAnswerOptions12" />
+        app:layout_constraintBottom_toTopOf="@+id/spinnerAnswerOptions4"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeftTwo"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAnswerOptions2" />
 
     <Spinner
-        android:id="@+id/spinnerAnswerOptions14"
+        android:id="@+id/spinnerAnswerOptions4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerAnswerOptions15"
-        app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalRight"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerAnswerOptions13" />
+        app:layout_constraintBottom_toTopOf="@+id/spinnerAnswerOptions5"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeftTwo"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAnswerOptions3" />
 
     <Spinner
-        android:id="@+id/spinnerAnswerOptions15"
+        android:id="@+id/spinnerAnswerOptions5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerAnswerOptions16"
-        app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalRight"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerAnswerOptions14" />
+        app:layout_constraintBottom_toTopOf="@+id/spinnerAnswerOptions6"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeftTwo"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAnswerOptions4" />
 
     <Spinner
-        android:id="@+id/spinnerAnswerOptions16"
+        android:id="@+id/spinnerAnswerOptions6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalRight"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerAnswerOptions15" />
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/UserSaveAnswers"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeftTwo"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAnswerOptions5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineTableVerticalLeftTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

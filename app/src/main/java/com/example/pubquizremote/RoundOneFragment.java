@@ -28,7 +28,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class RoundOneFragment extends Fragment implements View.OnClickListener {
@@ -46,6 +49,10 @@ public class RoundOneFragment extends Fragment implements View.OnClickListener {
     private int pageButtonId;
     private String page;
     private String label;
+    private String correct_answer;
+    //String[] answer_options = {"", "", "", "", "", ""};
+    List<String> answer_options = new ArrayList<String>();
+
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -84,48 +91,30 @@ public class RoundOneFragment extends Fragment implements View.OnClickListener {
         binding.pic6.setOnClickListener(this);
         binding.radioButtonOne.setOnClickListener(this);
         binding.radioButtonTwo.setOnClickListener(this);
-        
-        set_player_answer_options();
+        binding.UserSaveAnswers.setOnClickListener(this);
 
-        //read_labels_from_db();
+        // initialising arraylist with default values. These will be overwritten by database values within load_images_from_db().onDataChange()
+        answer_options.add("1");
+        answer_options.add("2");
+        answer_options.add("3");
+        answer_options.add("4");
+        answer_options.add("5");
+        answer_options.add("6");
 
     }
 
-/*
-    private void read_labels_from_db() {
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://pub-quiz-remote-default-rtdb.europe-west1.firebasedatabase.app");
-        auth = FirebaseAuth.getInstance();
-        String uid = auth.getCurrentUser().getUid();
-
-        DatabaseReference current_player = database.getReference("question_answer_pairs").child("1").child("11").child("label");
-        current_player.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.e("firebase", "Error getting data", task.getException());
-                }
-                else {
-                    Log.d("firebase", String.valueOf(task.getResult().getValue()));
-                    binding.Label11.setText(task.getResult().getValue().toString());
-                }
-            }
-        });
-    }
-
- */
 
 
 
-    private void set_player_answer_options() {
 
-        String[] answer_options = { "1", "2", "3", "4", "5","6" };
-        Spinner spin11 = binding.spinnerAnswerOptions11;
-        Spinner spin12 = binding.spinnerAnswerOptions12;
-        Spinner spin13 = binding.spinnerAnswerOptions13;
-        Spinner spin14 = binding.spinnerAnswerOptions14;
-        Spinner spin15 = binding.spinnerAnswerOptions15;
-        Spinner spin16 = binding.spinnerAnswerOptions16;
+    private void set_player_answer_options(List answer_options) {
+
+        Spinner spin11 = binding.spinnerAnswerOptions1;
+        Spinner spin12 = binding.spinnerAnswerOptions2;
+        Spinner spin13 = binding.spinnerAnswerOptions3;
+        Spinner spin14 = binding.spinnerAnswerOptions4;
+        Spinner spin15 = binding.spinnerAnswerOptions5;
+        Spinner spin16 = binding.spinnerAnswerOptions6;
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, answer_options);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin11.setAdapter(adapter);
@@ -134,6 +123,7 @@ public class RoundOneFragment extends Fragment implements View.OnClickListener {
         spin14.setAdapter(adapter);
         spin15.setAdapter(adapter);
         spin16.setAdapter(adapter);
+
     }
 
 
@@ -152,73 +142,88 @@ public class RoundOneFragment extends Fragment implements View.OnClickListener {
 
                     link = dataSnapshot.child("picture").getValue(String.class);
                     page = dataSnapshot.child("page").getValue().toString();
-
                     label = dataSnapshot.child("label").getValue().toString();
+                    correct_answer = dataSnapshot.child("correct_answer").getValue().toString();
 
 
-                    Log.w("Debug_A", "Link1: " + link);
+
+                    //Log.w("Debug_A", "Link1: " + link);
                     switch (s) {
                         case "11":
                             Picasso.get().load(link).into(binding.pic1);
                             imageUrls.put("pic1", link);
                             binding.Label1.setText(label);
+                            answer_options.set(3,correct_answer);
                             break;
                         case "12":
                             Picasso.get().load(link).into(binding.pic2);
                             imageUrls.put("pic2", link);
                             binding.Label2.setText(label);
+                            answer_options.set(5,correct_answer);
                             break;
                         case "13":
                             Picasso.get().load(link).into(binding.pic3);
                             imageUrls.put("pic3", link);
                             binding.Label3.setText(label);
+                            answer_options.set(2,correct_answer);
                             break;
                         case "14":
                             Picasso.get().load(link).into(binding.pic4);
                             imageUrls.put("pic4", link);
                             binding.Label4.setText(label);
+                            answer_options.set(1,correct_answer);
                             break;
                         case "15":
                             Picasso.get().load(link).into(binding.pic5);
                             imageUrls.put("pic5", link);
                             binding.Label5.setText(label);
+                            answer_options.set(4,correct_answer);
                             break;
                         case "16":
                             Picasso.get().load(link).into(binding.pic6);
                             imageUrls.put("pic6", link);
                             binding.Label6.setText(label);
+                            answer_options.set(0,correct_answer);
                             break;
                         case "17":
                             Picasso.get().load(link).into(binding.pic1);
                             imageUrls.put("pic1", link);
                             binding.Label1.setText(label);
+                            answer_options.set(0,correct_answer);
                             break;
                         case "18":
                             Picasso.get().load(link).into(binding.pic2);
                             imageUrls.put("pic2", link);
                             binding.Label2.setText(label);
+                            answer_options.set(1,correct_answer);
                             break;
                         case "19":
                             Picasso.get().load(link).into(binding.pic3);
                             imageUrls.put("pic3", link);
                             binding.Label3.setText(label);
+                            answer_options.set(2,correct_answer);
                             break;
                         case "110":
                             Picasso.get().load(link).into(binding.pic4);
                             imageUrls.put("pic4", link);
                             binding.Label4.setText(label);
+                            answer_options.set(3,correct_answer);
                             break;
                         case "111":
                             Picasso.get().load(link).into(binding.pic5);
                             imageUrls.put("pic5", link);
                             binding.Label5.setText(label);
+                            answer_options.set(4,correct_answer);
                             break;
                         case "112":
                             Picasso.get().load(link).into(binding.pic6);
                             imageUrls.put("pic6", link);
                             binding.Label6.setText(label);
+                            answer_options.set(5,correct_answer);
                             break;
                     }
+
+                    set_player_answer_options(answer_options);
 
                 }
 
@@ -234,12 +239,35 @@ public class RoundOneFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    void player_answers_to_db(){
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://pub-quiz-remote-default-rtdb.europe-west1.firebasedatabase.app");
+        auth = FirebaseAuth.getInstance();
+        String uid = auth.getCurrentUser().getUid();
+        DatabaseReference ref_player_answers = database.getReference("players").child(uid).child("1");
+
+        String one = "11"; String two = "12";String three = "13";
+        String four = "14";String five = "15";String six = "16";
+        if (binding.radioButtonTwo.isChecked()) {
+            one = "17";two = "18";three = "19";
+            four = "110";five = "111";six = "112";
+        }
+
+        ref_player_answers.child(one).setValue(binding.spinnerAnswerOptions1.getSelectedItem().toString());
+        ref_player_answers.child(two).setValue(binding.spinnerAnswerOptions2.getSelectedItem().toString());
+        ref_player_answers.child(three).setValue(binding.spinnerAnswerOptions3.getSelectedItem().toString());
+        ref_player_answers.child(four).setValue(binding.spinnerAnswerOptions4.getSelectedItem().toString());
+        ref_player_answers.child(five).setValue(binding.spinnerAnswerOptions5.getSelectedItem().toString());
+        ref_player_answers.child(six).setValue(binding.spinnerAnswerOptions6.getSelectedItem().toString());
+
+
+    }
 
     @Override
     public void onClick(View view) {
 
         String tag = String.valueOf(view.getTag());
-        Log.w("Debug_A","Tag: "+tag);
+        //Log.w("Debug_A","Tag: "+tag);
 
         if (tag.equals("radioButtonOne")) {
             Toast.makeText(getContext(), "Wechsel zu Seite 1", Toast.LENGTH_SHORT).show();
@@ -249,11 +277,20 @@ public class RoundOneFragment extends Fragment implements View.OnClickListener {
             Toast.makeText(getContext(), "Wechsel zu Seite 2", Toast.LENGTH_SHORT).show();
             load_images_from_db(questionsPage2);
         }
+        else if (tag.equals("UserSaveAnswers")) {
+            Toast.makeText(getContext(), "User Input button pressed", Toast.LENGTH_SHORT).show();
+            player_answers_to_db();
+        }
+        else {
+            Log.w("Debug_A", "No Click event found in onClick()-method" );
+        }
+        /*
         else {
             Navigation.findNavController(getView()).navigate(R.id.action_nav_round_one_to_fullScreenImageFragment);
             Bundle result = new Bundle();
             result.putString("bundleKey",imageUrls.get(tag));
             getParentFragmentManager().setFragmentResult("requestKey", result);
         }
+         */
     }
 }
