@@ -41,7 +41,7 @@ public class RoundOneFragment extends Fragment implements View.OnClickListener {
     private String link;
     HashMap<String, String> imageUrls = new HashMap<String, String>();
     final String[] questionsPage1 = {"11", "12", "13", "14", "15", "16"};
-    final String[] questionsPage2 = {"21", "22", "23", "24", "25", "26"};
+    final String[] questionsPage2 = {"17", "18", "19", "110", "111", "112"};
     String[] questions;
     private int pageButtonId;
     private String page;
@@ -188,32 +188,32 @@ public class RoundOneFragment extends Fragment implements View.OnClickListener {
                             imageUrls.put("pic6", link);
                             binding.Label6.setText(label);
                             break;
-                        case "21":
+                        case "17":
                             Picasso.get().load(link).into(binding.pic1);
                             imageUrls.put("pic1", link);
                             binding.Label1.setText(label);
                             break;
-                        case "22":
+                        case "18":
                             Picasso.get().load(link).into(binding.pic2);
                             imageUrls.put("pic2", link);
                             binding.Label2.setText(label);
                             break;
-                        case "23":
+                        case "19":
                             Picasso.get().load(link).into(binding.pic3);
                             imageUrls.put("pic3", link);
                             binding.Label3.setText(label);
                             break;
-                        case "24":
+                        case "110":
                             Picasso.get().load(link).into(binding.pic4);
                             imageUrls.put("pic4", link);
                             binding.Label4.setText(label);
                             break;
-                        case "25":
+                        case "111":
                             Picasso.get().load(link).into(binding.pic5);
                             imageUrls.put("pic5", link);
                             binding.Label5.setText(label);
                             break;
-                        case "26":
+                        case "112":
                             Picasso.get().load(link).into(binding.pic6);
                             imageUrls.put("pic6", link);
                             binding.Label6.setText(label);
