@@ -9,7 +9,9 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+
+    <string name="adminSettings">Admin Settings</string>
+    <string name="settings">Settings</string>
     <string name="logout">Logout</string>
 
     <string name="menu_home">Info</string>
@@ -34,5 +36,7 @@
     <string name="PicNoSix">6</string>
 
     <string name="UserSaveAnswers">Antworten abschicken</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

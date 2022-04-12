@@ -130,13 +130,24 @@ public class LoggedInHomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-            case R.id.action_settings:
+            case R.id.settings:
                 Toast.makeText(getApplicationContext(),"settings chosen", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.adminSettings:
+                String uid = auth.getCurrentUser().getUid();
+                if (uid.equals("RqjdhEXaqhfF3ECQtOrEvV4henp2")) {
+                    Intent intentAdmin = new Intent(getApplicationContext(), AdminSettingsActivity.class);
+                    intentAdmin.putExtra("uid", uid);
+                    startActivity(intentAdmin);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"You are not registered as an admin user", Toast.LENGTH_LONG).show();
+                }
                 return true;
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(intent);
+                Intent intentLogout = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intentLogout);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
