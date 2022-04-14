@@ -5,11 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.pubquizremote.databinding.AdminSettingsActivityBinding;
-import com.example.pubquizremote.databinding.FragmentRoundOneBinding;
 
 
 public class AdminSettingsActivity extends AppCompatActivity {
