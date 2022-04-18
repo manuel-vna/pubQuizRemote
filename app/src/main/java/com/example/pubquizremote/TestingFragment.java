@@ -7,19 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-import com.example.pubquizremote.R;
-import com.example.pubquizremote.databinding.FragmentRoundOneBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.pubquizremote.databinding.FragmentTestingBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,30 +20,27 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 
-public class RoundOneFragment extends Fragment implements View.OnClickListener {
+public class TestingFragment extends Fragment implements View.OnClickListener {
 
 
-    private FragmentRoundOneBinding binding;
+    private FragmentTestingBinding binding;
     FirebaseDatabase database;
     FirebaseAuth auth;
     String uid;
     private String link;
     HashMap<String, String> imageUrls = new HashMap<String, String>();
-    final String[] questionsPage1 = {"11", "12", "13", "14", "15", "16"};
+    final String[] questionsPage1 = {"1", "2", "3", "4", "5", "6"};
     final String[] questionsPage2 = {"17", "18", "19", "110", "111", "112"};
     String[] questions;
     private int pageButtonId;
     private String page;
     private String label;
     private String correct_answer;
-    //String[] answer_options = {"", "", "", "", "", ""};
     List<String> answer_options = new ArrayList<String>();
 
 
@@ -58,7 +48,7 @@ public class RoundOneFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        binding = FragmentRoundOneBinding.inflate(inflater, container, false);
+        binding = FragmentTestingBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         return root;
 
@@ -105,8 +95,6 @@ public class RoundOneFragment extends Fragment implements View.OnClickListener {
 
 
 
-
-
     private void set_player_answer_options(List answer_options) {
 
         Spinner spin11 = binding.spinnerAnswerOptions1;
@@ -149,37 +137,37 @@ public class RoundOneFragment extends Fragment implements View.OnClickListener {
 
                     //Log.w("Debug_A", "Link1: " + link);
                     switch (s) {
-                        case "11":
+                        case "1":
                             Picasso.get().load(link).into(binding.pic1);
                             imageUrls.put("pic1", link);
                             binding.Label1.setText(label);
                             answer_options.set(3,correct_answer);
                             break;
-                        case "12":
+                        case "2":
                             Picasso.get().load(link).into(binding.pic2);
                             imageUrls.put("pic2", link);
                             binding.Label2.setText(label);
                             answer_options.set(5,correct_answer);
                             break;
-                        case "13":
+                        case "3":
                             Picasso.get().load(link).into(binding.pic3);
                             imageUrls.put("pic3", link);
                             binding.Label3.setText(label);
                             answer_options.set(2,correct_answer);
                             break;
-                        case "14":
+                        case "4":
                             Picasso.get().load(link).into(binding.pic4);
                             imageUrls.put("pic4", link);
                             binding.Label4.setText(label);
                             answer_options.set(1,correct_answer);
                             break;
-                        case "15":
+                        case "5":
                             Picasso.get().load(link).into(binding.pic5);
                             imageUrls.put("pic5", link);
                             binding.Label5.setText(label);
                             answer_options.set(4,correct_answer);
                             break;
-                        case "16":
+                        case "6":
                             Picasso.get().load(link).into(binding.pic6);
                             imageUrls.put("pic6", link);
                             binding.Label6.setText(label);
@@ -241,7 +229,7 @@ public class RoundOneFragment extends Fragment implements View.OnClickListener {
 
     void player_answers_to_db(){
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://pub-quiz-remote-default-rtdb.europe-west1.firebasedatabase.app");
+        FirebaseDatabase database = RoundFragment.database;
         auth = FirebaseAuth.getInstance();
         String uid = auth.getCurrentUser().getUid();
         DatabaseReference ref_player_answers = database.getReference("players").child(uid).child("1");

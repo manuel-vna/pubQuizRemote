@@ -13,19 +13,19 @@
 
     <fragment
         android:id="@+id/nav_round_one"
-        android:name="com.example.pubquizremote.RoundOneFragment"
+        android:name="com.example.pubquizremote.TestingFragment"
         android:label="@string/menu_roundOne"
-        tools:layout="@layout/fragment_round_one" >
+        tools:layout="@layout/fragment_testing" >
         <action
             android:id="@+id/action_nav_round_one_to_fullScreenImageFragment"
             app:destination="@id/fullScreenImageFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/nav_round_two"
-        android:name="com.example.pubquizremote.RoundTwoFragment"
+        android:id="@+id/nav_image_round"
+        android:name="com.example.pubquizremote.ImageRoundFragment"
         android:label="@string/menu_roundTwo"
-        tools:layout="@layout/fragment_round_two" />
+        tools:layout="@layout/fragment_image_round" />
     <fragment
         android:id="@+id/fullScreenImageFragment"
         android:name="com.example.pubquizremote.FullScreenImageFragment"
@@ -35,4 +35,8 @@
             android:id="@+id/action_fullScreenImageFragment_to_nav_round_one"
             app:destination="@id/nav_round_one" />
     </fragment>
+    <fragment
+        android:id="@+id/imageRoundFragment"
+        android:name="com.example.pubquizremote.ImageRoundFragment"
+        android:label="ImageRoundFragment" />
 </navigation>

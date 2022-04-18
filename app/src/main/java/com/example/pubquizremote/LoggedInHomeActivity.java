@@ -66,7 +66,7 @@ public class LoggedInHomeActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_round_one, R.id.nav_round_two)
+                R.id.nav_home, R.id.nav_round_one, R.id.nav_image_round)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_logged_in_home);
@@ -146,7 +146,7 @@ public class LoggedInHomeActivity extends AppCompatActivity {
                 return true;
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
-                Intent intentLogout = new Intent(getApplicationContext(),MainActivity.class);
+                Intent intentLogout = new Intent(getApplicationContext(),RoundFragment.class);
                 startActivity(intentLogout);
                 return true;
             default:

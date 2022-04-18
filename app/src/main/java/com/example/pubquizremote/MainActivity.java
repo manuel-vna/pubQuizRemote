@@ -27,14 +27,17 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+
 public class MainActivity extends AppCompatActivity {
 
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
     Button signInButton;
-    //private final static int RC_SIGN_IN = 0;
-    FirebaseAuth auth;
     String uid;
+
+    static FirebaseDatabase database = FirebaseDatabase.getInstance("https://pub-quiz-remote-default-rtdb.europe-west1.firebasedatabase.app");
+    static FirebaseAuth auth = FirebaseAuth.getInstance();
+    static String[] questionNos = {"1", "2", "3", "4", "5", "6"};
 
 
     @Override
@@ -53,11 +56,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        auth = FirebaseAuth.getInstance();
-
         signInButton = findViewById(R.id.buttonSignIn);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://pub-quiz-remote-default-rtdb.europe-west1.firebasedatabase.app");
         DatabaseReference ref_players = database.getReference("players");
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -110,8 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://pub-quiz-remote-default-rtdb.europe-west1.firebasedatabase.app");
-        DatabaseReference ref_players = database.getReference("players");
+        DatabaseReference ref_players = database.getReference("player_data");
 
         AuthCredential firebaseCredential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
         auth.signInWithCredential(firebaseCredential)

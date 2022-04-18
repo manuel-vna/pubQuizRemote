@@ -13,7 +13,7 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_roundOne" />
         <item
-            android:id="@+id/nav_round_two"
+            android:id="@+id/nav_image_round"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_roundTwo" />
     </group>
