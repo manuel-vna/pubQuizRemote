@@ -29,6 +29,16 @@ public class AdminSettingsViewModel extends AndroidViewModel{
     //Arrays and Maps
     Map<String, String> correct_answers_of_round = new HashMap<String, String>();
 
+    //int count variables
+    int round_score;
+    int round_count;
+    String pre_update_score;
+    int new_score;
+
+    //snapshots
+    DataSnapshot user_block;
+    DataSnapshot round;
+
 
     public AdminSettingsViewModel(@NonNull Application application) {
         super(application);
@@ -77,33 +87,10 @@ public class AdminSettingsViewModel extends AndroidViewModel{
             @Override
             public void onCallback(Map<String, String> map) {
                 correct_answers_of_round = map;
-                Log.i("Debug_A", "CorrectAnswers Hashmap 2: " + correct_answers_of_round);
+                //Log.i("Debug_A", "CorrectAnswers Hashmap 2: " + correct_answers_of_round);
             }
         });
     }
-    /*
-    private void readData(FirebaseDBCallback firebaseDBCallback) {
-
-        DatabaseReference ref_round = database.getReference("global_game_data/round1");
-        ref_round.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.e("Debug_A", "Error getting data", task.getException());
-                }
-                else {
-                    for (DataSnapshot question_block : task.getResult().getChildren()) {
-
-                        if (question_block.child("correctAnswer").exists()) {
-                            correct_answers_of_round.put(question_block.getKey(), question_block.child("correctAnswer").getValue().toString());
-                        }
-                    }
-                }
-                firebaseDBCallback.onCallback(correct_answers_of_round);
-            }
-        });
-    }
-     */
     private void readData(FirebaseDBCallback firebaseDBCallback) {
 
         DatabaseReference ref_round = database.getReference();
@@ -130,14 +117,19 @@ public class AdminSettingsViewModel extends AndroidViewModel{
 
                         if (level1.getKey().toString().equals("player_data")){
 
-                            int count = 1;
-                            int round_score_per_player = 0;
-
-                            for (DataSnapshot a : level1.getChildren()){
-                                for (DataSnapshot b: a.child("round1").getChildren()){
-                                    Log.i("Debug_A", "Boolean: "+b.getValue().toString()+" | "+correct_answers_of_round.get(String.valueOf(count)));
-                                    count += 1;
+                            for (DataSnapshot user_block : level1.getChildren()){
+                                round_score = 0;
+                                round_count = 1;
+                                for (DataSnapshot round: user_block.child("round1").getChildren()){
+                                    Log.i("Debug_A", "Values: "+round.getValue().toString()+" | "+correct_answers_of_round.get(String.valueOf(round_count)));
+                                    if (round.getValue().toString().equals(correct_answers_of_round.get(String.valueOf(round_count)))){
+                                        round_score += 1;
+                                    }
+                                    round_count += 1;
                                 }
+                                pre_update_score = user_block.child("points").getValue().toString();
+                                new_score = Integer.parseInt(pre_update_score)+round_score;
+                                user_block.getRef().child("points").setValue(String.valueOf(new_score));
                             }
                         }
                     }
