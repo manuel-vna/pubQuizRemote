@@ -10,6 +10,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,14 +68,11 @@ public class AdminSettingsViewModel extends AndroidViewModel{
                                              String roundNo, String correctAnswer){
 
         QuestionData questionData = new QuestionData(questionText,questionNo,roundNo,correctAnswer,"","");
-
         ref_db_global_game_data.child(roundNo).child(questionNo).setValue(questionData);
-
     }
 
 
     public void evaluate_results_of_round() {
-
         readData(new FirebaseDBCallback() {
             @Override
             public void onCallback(Map<String, String> map) {
@@ -82,9 +81,10 @@ public class AdminSettingsViewModel extends AndroidViewModel{
             }
         });
     }
+    /*
     private void readData(FirebaseDBCallback firebaseDBCallback) {
 
-        DatabaseReference ref_round = database.getReference("global_game_data").child("round1");
+        DatabaseReference ref_round = database.getReference("global_game_data/round1");
         ref_round.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -92,10 +92,53 @@ public class AdminSettingsViewModel extends AndroidViewModel{
                     Log.e("Debug_A", "Error getting data", task.getException());
                 }
                 else {
-                    for (DataSnapshot ds : task.getResult().getChildren()) {
+                    for (DataSnapshot question_block : task.getResult().getChildren()) {
 
-                        if (ds.child("correctAnswer").exists()) {
-                            correct_answers_of_round.put(ds.getKey(), ds.child("correctAnswer").getValue().toString());
+                        if (question_block.child("correctAnswer").exists()) {
+                            correct_answers_of_round.put(question_block.getKey(), question_block.child("correctAnswer").getValue().toString());
+                        }
+                    }
+                }
+                firebaseDBCallback.onCallback(correct_answers_of_round);
+            }
+        });
+    }
+     */
+    private void readData(FirebaseDBCallback firebaseDBCallback) {
+
+        DatabaseReference ref_round = database.getReference();
+        ref_round.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("Debug_A", "Error getting data", task.getException());
+                }
+                else {
+                    for (DataSnapshot level1 : task.getResult().getChildren()) {
+
+                        if (level1.getKey().toString().equals("global_game_data")){
+
+                            Log.i("Debug_A", "RadioGroupRound? "+level1.child("round1/is_type_radio_group").getValue().toString());
+
+                            for (DataSnapshot a : level1.child("round1").getChildren()){
+                                //Log.i("Debug_A", "B: "+String.valueOf(a));
+                                if (a.child("correctAnswer").exists()) {
+                                    correct_answers_of_round.put(a.getKey(), a.child("correctAnswer").getValue().toString());
+                                }
+                            }
+                        }
+
+                        if (level1.getKey().toString().equals("player_data")){
+
+                            int count = 1;
+                            int round_score_per_player = 0;
+
+                            for (DataSnapshot a : level1.getChildren()){
+                                for (DataSnapshot b: a.child("round1").getChildren()){
+                                    Log.i("Debug_A", "Boolean: "+b.getValue().toString()+" | "+correct_answers_of_round.get(String.valueOf(count)));
+                                    count += 1;
+                                }
+                            }
                         }
                     }
                 }
@@ -106,9 +149,6 @@ public class AdminSettingsViewModel extends AndroidViewModel{
     private interface FirebaseDBCallback {
         void onCallback(Map<String, String> map);
     }
-
-
-
 
 }
 
