@@ -4,8 +4,9 @@ import android.util.Log;
 
 public class Player {
 
-    private String name;
-    private String points;
+    protected String uid;
+    protected String name;
+    protected String points;
     private AnswersPlayer round1;
     private AnswersPlayer round2;
     private AnswersPlayer round3;
@@ -18,12 +19,13 @@ public class Player {
     }
 
     public Player(String name,String points) {
-        this(name,points,null,null,null,null,null,null);
+        this(name,points,null,null,null,null,null,null,null);
 
     }
 
 
-    public Player(String name, String points, AnswersPlayer round1, AnswersPlayer round2, AnswersPlayer round3, AnswersPlayer round4, AnswersPlayer round5, AnswersPlayer round6) {
+    public Player(String name, String points, String uid, AnswersPlayer round1, AnswersPlayer round2, AnswersPlayer round3, AnswersPlayer round4, AnswersPlayer round5, AnswersPlayer round6) {
+        this.uid = uid;
         this.name = name;
         this.points = points;
         this.round1 = round1;
@@ -34,6 +36,10 @@ public class Player {
         this.round6 = round6;
     }
 
+
+    public String getUid() { return uid; }
+
+    public void setUid(String uid) { this.uid = uid; }
 
     public String getName() {
         return name;
@@ -98,7 +104,6 @@ public class Player {
     public void setRound6(AnswersPlayer round6) {
         this.round6 = round6;
     }
-    
 
 
 }
