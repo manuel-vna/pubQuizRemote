@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
     static FirebaseDatabase database = FirebaseDatabase.getInstance("https://pub-quiz-remote-default-rtdb.europe-west1.firebasedatabase.app");
     static FirebaseAuth auth = FirebaseAuth.getInstance();
-    static String[] questionNos = {"1", "2", "3", "4", "5", "6"};
 
 
     @Override
@@ -57,8 +56,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         signInButton = findViewById(R.id.buttonSignIn);
-
-        DatabaseReference ref_players = database.getReference("players");
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.webClientId))
@@ -127,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
                             String uid = user.getUid();
                             ref_players.child(uid).setValue(player);
 
-                            //Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
                             Intent intent = new Intent(getApplicationContext(),LoggedInHomeActivity.class);
                             startActivity(intent);
 

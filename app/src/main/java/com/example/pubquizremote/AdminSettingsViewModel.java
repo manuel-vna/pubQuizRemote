@@ -1,7 +1,6 @@
 package com.example.pubquizremote;
 
 import android.app.Application;
-import android.os.Environment;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -11,10 +10,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -33,14 +28,10 @@ public class AdminSettingsViewModel extends AndroidViewModel{
     DatabaseReference ref_db_global_game_data = database.getReference("global_game_data");
 
     //Arrays, Lists and Maps
-    Map<String, String> correct_answers_of_round = new HashMap<String, String>();
     List<String> correct_answers = new ArrayList<String>();
-    //List<List<String>> csv_input_list_parent = new ArrayList<>();
-    List<Map<String, List<String>>> csv_input_parent = new ArrayList<>();
-    Map<String, List<String>> row_map = new HashMap<String, List<String>>();
     List<String> header = Arrays.asList(new String[]{"1", "2","3","4","5","6"});
     List<String> row = new ArrayList<String>();
-    List<AnswersPlayer> row_parent = new ArrayList<AnswersPlayer>();
+    List<AnswersPlayer> answers_players_objects = new ArrayList<AnswersPlayer>();
 
 
     //round variables
@@ -57,6 +48,7 @@ public class AdminSettingsViewModel extends AndroidViewModel{
     public AdminSettingsViewModel(@NonNull Application application) {
         super(application);
     }
+
 
 
     public void initialise_db(){
@@ -102,60 +94,33 @@ public class AdminSettingsViewModel extends AndroidViewModel{
             public void onCallback(String radioString,List<String> list1,List<AnswersPlayer> list2) {
                 is_type_radio_group = radioString;
                 correct_answers = list1;
-                row_parent = list2;
+                answers_players_objects = list2;
 
                 if (is_type_radio_group.equals("true")) {
-                    calculate_points(correct_answers,row_parent);
-                    //Log.i("Debug_A", "Row Parent: " + row_parent);
+
+                    calculate_points(correct_answers,answers_players_objects);
+                    //Log.i("Debug_A", "Row Parent: " + answers_players_objects);
                 }
                 else {
-                    //Log.i("Debug_A", "Output 2: " + radioString + " | " + correct_answers + " | " + row_parent.get(0).uid);
-                    write_points_to_csv(correct_answers,row_parent);
+
+                    write_answers_for_review(correct_answers,answers_players_objects);
+                    //Log.i("Debug_A", "Output 2: " + radioString + " | " + correct_answers + " | " + answers_players_objects.get(0).uid);
                 }
             }
         });
     }
 
-    private void write_points_to_csv(List<String> correct_answers,List<AnswersPlayer> row_parent) {
+    private void write_answers_for_review(List<String> correct_answers,List<AnswersPlayer> answers_players_objects) {
 
-        String pathname = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
-        try {
-            File root = new File(pathname);
-            if (!root.exists()) {
-                root.mkdirs();
-            }
-            File gpxfile = new File(root, "round1.csv");
-            FileWriter writer = new FileWriter(gpxfile);
+        Log.i("Debug_A", "write_answers_for_review: "+String.valueOf(correct_answers));
+        Log.i("Debug_A", "write_answers_for_review: "+String.valueOf(answers_players_objects));
 
-            for (AnswersPlayer user_block : row_parent) {
-
-                Log.i("Debug_A", "Uid: " + user_block.uid);
-                writer.append(user_block.uid);
-                        /*
-                        + ";"
-                        + user_block.name + ";"
-                        + user_block.playerAnswer1 + ";"
-                        + user_block.playerAnswer2 + ";"
-                        + user_block.playerAnswer3 + ";"
-                        + user_block.playerAnswer4 + ";"
-                        + user_block.playerAnswer5 + ";"
-                        + user_block.playerAnswer6 + "\n");
-
-                         */
-            }
-
-            writer.flush();
-            writer.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.d("Debug_A", String.valueOf(e));
-        }
+        //TBD: Saving csv-file to Google Drive API
     }
 
-    private void calculate_points(List<String> correct_answers,List<AnswersPlayer> row_parent) {
+    private void calculate_points(List<String> correct_answers,List<AnswersPlayer> answers_players_objects) {
 
-        for (AnswersPlayer user_block : row_parent) {
+        for (AnswersPlayer user_block : answers_players_objects) {
             if (user_block.playerAnswer1.equals(correct_answers.get(0))){
                 round_score += 1;
             }
@@ -177,7 +142,7 @@ public class AdminSettingsViewModel extends AndroidViewModel{
             pre_update_score = user_block.points;
             new_score = Integer.parseInt(pre_update_score) + round_score;
             database.getReference().child("player_data").child(user_block.uid).child("points").setValue(String.valueOf(new_score));
-            //Log.i("Debug_A", "Round Score: "+user_block.uid+" | " +String.valueOf(round_score)+ " | "+String.valueOf(new_score));
+            Log.i("Debug_A", "Round Score: "+user_block.uid+" | " +String.valueOf(round_score)+ " | "+String.valueOf(new_score));
             round_score = 0;
         }
 
@@ -210,11 +175,11 @@ public class AdminSettingsViewModel extends AndroidViewModel{
                                 for (DataSnapshot round : user_block.child("round1").getChildren()) {
                                     row.add(round.getValue().toString());
                                 }
-                                row_parent.add(new AnswersPlayer(user_block.getKey(),user_block.child("name").getValue().toString(),user_block.child("points").getValue().toString(),row.get(0),row.get(1),row.get(2),row.get(3),row.get(4),row.get(5)));
+                                answers_players_objects.add(new AnswersPlayer(user_block.getKey(),user_block.child("name").getValue().toString(),user_block.child("points").getValue().toString(),row.get(0),row.get(1),row.get(2),row.get(3),row.get(4),row.get(5)));
                             }
                         }
                     }
-                    firebaseDBCallback.onCallback(is_type_radio_group,correct_answers,row_parent);
+                    firebaseDBCallback.onCallback(is_type_radio_group,correct_answers,answers_players_objects);
                 }
             }
         });

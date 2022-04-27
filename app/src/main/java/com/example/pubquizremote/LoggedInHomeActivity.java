@@ -29,6 +29,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class LoggedInHomeActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -134,8 +138,11 @@ public class LoggedInHomeActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"settings chosen", Toast.LENGTH_LONG).show();
                 return true;
             case R.id.adminSettings:
+                List<String> uid_admin_list = new ArrayList<String>();
+                uid_admin_list.addAll(Arrays.asList("RNo7Y78aQxfRMw7Gx3sqJe6htaw2","RqjdhEXaqhfF3ECQtOrEvV4henp2"));
                 String uid = auth.getCurrentUser().getUid();
-                if (uid.equals("RqjdhEXaqhfF3ECQtOrEvV4henp2")) {
+                //if (uid.equals("RqjdhEXaqhfF3ECQtOrEvV4henp2")) {
+                if (uid_admin_list.contains(uid)){
                     Intent intentAdmin = new Intent(getApplicationContext(), AdminSettingsActivity.class);
                     intentAdmin.putExtra("uid", uid);
                     startActivity(intentAdmin);
@@ -146,7 +153,7 @@ public class LoggedInHomeActivity extends AppCompatActivity {
                 return true;
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
-                Intent intentLogout = new Intent(getApplicationContext(),RoundFragment.class);
+                Intent intentLogout = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(intentLogout);
                 return true;
             default:
