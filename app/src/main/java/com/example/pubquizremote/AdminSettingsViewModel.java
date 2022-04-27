@@ -106,6 +106,8 @@ public class AdminSettingsViewModel extends AndroidViewModel{
                     write_answers_for_review(correct_answers,answers_players_objects);
                     //Log.i("Debug_A", "Output 2: " + radioString + " | " + correct_answers + " | " + answers_players_objects.get(0).uid);
                 }
+                correct_answers.clear();
+                answers_players_objects.clear();
             }
         });
     }
