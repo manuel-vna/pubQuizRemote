@@ -26,44 +26,43 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineTableTop"
-        app:layout_constraintVertical_bias="0.489">
+        app:layout_constraintTop_toTopOf="@+id/guidelineTableTop">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
-            android:icon="@drawable/ic_menu_gallery" />
+            android:icon="@drawable/ic_menu_gallery"
+            android:text="1" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2"
-            android:icon="@drawable/ic_menu_gallery" />
+            android:icon="@drawable/ic_menu_gallery"
+            android:text="2" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3"
-            android:icon="@drawable/ic_menu_gallery" />
+            android:icon="@drawable/ic_menu_gallery"
+            android:text="3" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4"
-            android:icon="@drawable/ic_menu_gallery" />
+            android:icon="@drawable/ic_menu_gallery"
+            android:text="4" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5"
-            android:icon="@drawable/ic_menu_gallery" />
+            android:icon="@drawable/ic_menu_gallery"
+            android:text="5" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="6"
-            android:icon="@drawable/ic_menu_gallery" />
+            android:icon="@drawable/ic_menu_gallery"
+            android:text="6" />
 
 
     </com.google.android.material.tabs.TabLayout>

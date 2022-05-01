@@ -6,46 +6,107 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.pubquizremote.databinding.FragmentImageRoundBinding;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class ImageRoundFragment extends Fragment {
+public class ImageRoundFragment extends Fragment implements RoundFragment {
 
     private FragmentImageRoundBinding binding;
-    static AnswersPlayer answersPlayer;
-    HashMap<String, String> imageUrls = new HashMap<String, String>();
-    private String link;
+    private SharedRoundsViewModel sharedRoundsViewModel;
+    public String round = "round1";
+    String[] questionNos = {"1", "2", "3", "4", "5", "6"};
+    FirebaseDatabase database = FirebaseDatabase.getInstance("https://pub-quiz-remote-default-rtdb.europe-west1.firebasedatabase.app");
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+    String uid = auth.getCurrentUser().getUid();
+    public List<QuestionData> questionDataList3;
+
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+        sharedRoundsViewModel = new ViewModelProvider(this).get(SharedRoundsViewModel.class);
+        sharedRoundsViewModel.get_images(round);
+
         binding = FragmentImageRoundBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         return root;
-
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        FirebaseDatabase database = RoundFragment.database;
 
-        load_images_from_db(RoundFragment.questionNos);
+        questionDataList3 = sharedRoundsViewModel.questionDataList2;
+        //Log.w("Debug_A", "questionDataList A1"+questionDataList3);
+        send_images_to_ui_fragment(questionDataList3);
 
-        /*
+
+    }
+
+
+
+    public void send_images_to_ui_fragment(List<QuestionData> questionDataList){
+
+        Log.w("Debug_A", "questionDataList A2"+questionDataList);
+
+        for (QuestionData question_block : questionDataList) {
+
+            //Log.w("Debug_A", "questionNo: "+question_block.questionNo);
+            //Log.w("Debug_A", "correctAnswer: "+question_block.correctAnswer);
+
+            switch (question_block.questionNo) {
+                case "1":
+                    Picasso.get().load(question_block.picture).into(binding.pic1);
+                    //answer_options.set(3,question_block.correctAnswer);
+                    break;
+                case "2":
+                    Picasso.get().load(question_block.picture).into(binding.pic2);
+                    //answer_options.set(5,question_block.correctAnswer);
+                    break;
+                case "3":
+                    Picasso.get().load(question_block.picture).into(binding.pic3);
+                    //answer_options.set(1,question_block.correctAnswer);
+                    break;
+                case "4":
+                    Picasso.get().load(question_block.picture).into(binding.pic4);
+                    //answer_options.set(6,question_block.correctAnswer);
+                    break;
+                case "5":
+                    Picasso.get().load(question_block.picture).into(binding.pic5);
+                    //answer_options.set(2,question_block.correctAnswer);
+                    break;
+                case "6":
+                    Picasso.get().load(question_block.picture).into(binding.pic6);
+                    //answer_options.set(4,question_block.correctAnswer);
+                    break;
+            }
+        }
+    }
+
+
+}
+
+
+
+
+
+/*
         answersPlayer = new AnswersPlayer(
             binding.spinnerAnswerOptions1.getSelectedItem().toString(),
             binding.spinnerAnswerOptions2.getSelectedItem().toString(),
@@ -54,85 +115,4 @@ public class ImageRoundFragment extends Fragment {
             binding.spinnerAnswerOptions5.getSelectedItem().toString(),
             binding.spinnerAnswerOptions6.getSelectedItem().toString()
         );
-
          */
-
-
-    }
-
-    void load_images_from_db(String[] questions) {
-
-        for (String s : questions) {
-
-            FirebaseDatabase database = RoundFragment.database;
-            FirebaseAuth auth = RoundFragment.auth;
-            String uid = auth.getCurrentUser().getUid();
-            DatabaseReference ref_round_one = database.getReference("question_answer_pairs").child("1").child(s);
-            ref_round_one.addListenerForSingleValueEvent(new ValueEventListener() {
-
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                    link = dataSnapshot.child("picture").getValue(String.class);
-                    //page = dataSnapshot.child("page").getValue().toString();
-                    //label = dataSnapshot.child("label").getValue().toString();
-                    //correct_answer = dataSnapshot.child("correct_answer").getValue().toString();
-
-                    switch (s) {
-                        case "1":
-                            Picasso.get().load(link).into(binding.pic1);
-                            imageUrls.put("pic1", link);
-                            //binding.Label1.setText(label);
-                            //answer_options.set(3,correct_answer);
-                            break;
-                        case "2":
-                            Picasso.get().load(link).into(binding.pic2);
-                            imageUrls.put("pic2", link);
-                            //binding.Label2.setText(label);
-                            //answer_options.set(5,correct_answer);
-                            break;
-                        case "3":
-                            Picasso.get().load(link).into(binding.pic3);
-                            imageUrls.put("pic3", link);
-                            //binding.Label3.setText(label);
-                            //answer_options.set(2,correct_answer);
-                            break;
-                        case "4":
-                            Picasso.get().load(link).into(binding.pic4);
-                            imageUrls.put("pic4", link);
-                            //binding.Label4.setText(label);
-                            //answer_options.set(1,correct_answer);
-                            break;
-                        case "5":
-                            Picasso.get().load(link).into(binding.pic5);
-                            imageUrls.put("pic5", link);
-                            //binding.Label5.setText(label);
-                            //answer_options.set(4,correct_answer);
-                            break;
-                        case "6":
-                            Picasso.get().load(link).into(binding.pic6);
-                            imageUrls.put("pic6", link);
-                            //binding.Label6.setText(label);
-                            //answer_options.set(0,correct_answer);
-                            break;
-
-                    }
-
-                    //set_player_answer_options(answer_options);
-
-                }
-
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    // we are showing that error message in toast
-                    Log.w("Debug_A", "error: loading image", databaseError.toException());
-                }
-
-            });
-        }
-
-    }
-
-
-}

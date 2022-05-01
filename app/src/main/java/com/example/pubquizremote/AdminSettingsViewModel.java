@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class AdminSettingsViewModel extends AndroidViewModel{
 
-    FirebaseDatabase database = RoundFragment.database;
+    FirebaseDatabase database = FirebaseDatabase.getInstance("https://pub-quiz-remote-default-rtdb.europe-west1.firebasedatabase.app");
     FirebaseAuth auth = FirebaseAuth.getInstance();
 
     // database references
@@ -83,7 +83,7 @@ public class AdminSettingsViewModel extends AndroidViewModel{
     public void add_question_to_round(String questionText, String questionNo,
                                              String roundNo, String correctAnswer){
 
-        QuestionData questionData = new QuestionData(questionText,questionNo,roundNo,correctAnswer,"","");
+        QuestionData questionData = new QuestionData(questionText,questionNo,roundNo,correctAnswer,"");
         ref_db_global_game_data.child(roundNo).child(questionNo).setValue(questionData);
     }
 

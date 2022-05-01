@@ -6,23 +6,22 @@ public class QuestionData {
     public String questionNo;
     public String round;
     public String correctAnswer;
-    public String label;
     public String picture;
+    public String label;
 
-    public QuestionData(String question,String questionNo,String round,String correctAnswer){
-        this(question,questionNo,round,correctAnswer,null,null);
+
+    public QuestionData(String question,String questionNo,String round,String correctAnswer,String picture){
+        this(question,questionNo,round,correctAnswer,picture,null);
     }
 
-    public QuestionData(String question,String questionNo,String round,String correctAnswer,String label,String picture){
+    public QuestionData(String question,String questionNo,String round,String correctAnswer,String picture,String label){
 
         this.question = question;
         this.questionNo = questionNo;
         this.round = round;
         this.correctAnswer = correctAnswer;
-        this.label = label;
         this.picture = picture;
+        this.label = label;
 
     }
-
-
 }

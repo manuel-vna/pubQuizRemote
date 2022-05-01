@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class TestingFragment extends Fragment implements View.OnClickListener {
+public class TestingFragment extends Fragment implements View.OnClickListener,RoundFragment{
 
 
     private FragmentTestingBinding binding;
@@ -229,8 +229,6 @@ public class TestingFragment extends Fragment implements View.OnClickListener {
 
     void player_answers_to_db(){
 
-        FirebaseDatabase database = RoundFragment.database;
-        auth = FirebaseAuth.getInstance();
         String uid = auth.getCurrentUser().getUid();
         DatabaseReference ref_player_answers = database.getReference("players").child(uid).child("1");
 
