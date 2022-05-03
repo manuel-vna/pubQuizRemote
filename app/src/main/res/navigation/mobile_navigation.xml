@@ -3,40 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_infopage">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/nav_infopage"
         android:name="com.example.pubquizremote.fragments.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_round_one"
-        android:name="com.example.pubquizremote.fragments.TestingFragment"
+        android:id="@+id/nav_round1"
+        android:name="com.example.pubquizremote.fragments.AbcdRoundFragment"
         android:label="@string/menu_roundOne"
-        tools:layout="@layout/fragment_testing" >
-        <action
-            android:id="@+id/action_nav_round_one_to_fullScreenImageFragment"
-            app:destination="@id/fullScreenImageFragment" />
-    </fragment>
+        tools:layout="@layout/abcd_round_fragment" />
 
     <fragment
-        android:id="@+id/nav_image_round"
+        android:id="@+id/nav_round2"
         android:name="com.example.pubquizremote.fragments.ImageRoundFragment"
         android:label="@string/menu_roundTwo"
         tools:layout="@layout/fragment_image_round" />
+
     <fragment
-        android:id="@+id/fullScreenImageFragment"
-        android:name="com.example.pubquizremote.fragments.FullScreenImageFragment"
-        android:label="full_screen_image_fragment"
-        tools:layout="@layout/full_screen_image_fragment" >
-        <action
-            android:id="@+id/action_fullScreenImageFragment_to_nav_round_one"
-            app:destination="@id/nav_round_one" />
-    </fragment>
-    <fragment
-        android:id="@+id/imageRoundFragment"
+        android:id="@+id/nav_round3"
         android:name="com.example.pubquizremote.fragments.ImageRoundFragment"
-        android:label="ImageRoundFragment" />
+        android:label="@string/menu_roundThree"
+        tools:layout="@layout/abcd_round_fragment" />
+
+    <fragment
+        android:id="@+id/nav_round4"
+        android:name="com.example.pubquizremote.fragments.AbcdRoundFragment"
+        android:label="@string/menu_roundFour"
+        tools:layout="@layout/abcd_round_fragment" />
+
 </navigation>
