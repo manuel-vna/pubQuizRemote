@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.pubquizremote.HomeFragment"
+        android:name="com.example.pubquizremote.fragments.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_round_one"
-        android:name="com.example.pubquizremote.TestingFragment"
+        android:name="com.example.pubquizremote.fragments.TestingFragment"
         android:label="@string/menu_roundOne"
         tools:layout="@layout/fragment_testing" >
         <action
@@ -23,12 +23,12 @@
 
     <fragment
         android:id="@+id/nav_image_round"
-        android:name="com.example.pubquizremote.ImageRoundFragment"
+        android:name="com.example.pubquizremote.fragments.ImageRoundFragment"
         android:label="@string/menu_roundTwo"
         tools:layout="@layout/fragment_image_round" />
     <fragment
         android:id="@+id/fullScreenImageFragment"
-        android:name="com.example.pubquizremote.FullScreenImageFragment"
+        android:name="com.example.pubquizremote.fragments.FullScreenImageFragment"
         android:label="full_screen_image_fragment"
         tools:layout="@layout/full_screen_image_fragment" >
         <action
@@ -37,6 +37,6 @@
     </fragment>
     <fragment
         android:id="@+id/imageRoundFragment"
-        android:name="com.example.pubquizremote.ImageRoundFragment"
+        android:name="com.example.pubquizremote.fragments.ImageRoundFragment"
         android:label="ImageRoundFragment" />
 </navigation>

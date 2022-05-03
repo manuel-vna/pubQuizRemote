@@ -1,11 +1,12 @@
-package com.example.pubquizremote;
+package com.example.pubquizremote.activities;
 
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.pubquizremote.models.AdminSettingsViewModel;
 import com.example.pubquizremote.databinding.AdminSettingsActivityBinding;
 
 
@@ -32,7 +33,7 @@ public class AdminSettingsActivity extends AppCompatActivity {
         binding.buttonBackfromAdminSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),LoggedInHomeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LoggedInActivity.class);
                 startActivity(intent);
             }
         });

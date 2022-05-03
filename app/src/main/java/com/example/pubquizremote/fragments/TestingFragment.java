@@ -1,4 +1,4 @@
-package com.example.pubquizremote;
+package com.example.pubquizremote.fragments;
 
 
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import com.example.pubquizremote.databinding.FragmentTestingBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -25,7 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class TestingFragment extends Fragment implements View.OnClickListener,RoundFragment{
+public class TestingFragment extends Fragment implements View.OnClickListener {
 
 
     private FragmentTestingBinding binding;

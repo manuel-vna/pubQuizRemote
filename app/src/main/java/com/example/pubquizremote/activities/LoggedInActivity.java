@@ -1,4 +1,4 @@
-package com.example.pubquizremote;
+package com.example.pubquizremote.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pubquizremote.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.snackbar.Snackbar;
@@ -33,7 +34,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class LoggedInHomeActivity extends AppCompatActivity {
+public class LoggedInActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityLoggedInHomeBinding binding;
@@ -153,7 +154,7 @@ public class LoggedInHomeActivity extends AppCompatActivity {
                 return true;
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
-                Intent intentLogout = new Intent(getApplicationContext(),MainActivity.class);
+                Intent intentLogout = new Intent(getApplicationContext(), SignInActivity.class);
                 startActivity(intentLogout);
                 return true;
             default:

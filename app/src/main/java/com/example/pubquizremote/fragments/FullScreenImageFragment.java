@@ -1,4 +1,4 @@
-package com.example.pubquizremote;
+package com.example.pubquizremote.fragments;
 
 import androidx.fragment.app.FragmentResultListener;
 
@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.pubquizremote.R;
 import com.example.pubquizremote.databinding.FullScreenImageFragmentBinding;
 import com.squareup.picasso.Picasso;
 

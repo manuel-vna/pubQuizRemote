@@ -1,4 +1,4 @@
-package com.example.pubquizremote;
+package com.example.pubquizremote.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

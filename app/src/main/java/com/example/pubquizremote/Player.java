@@ -4,9 +4,9 @@ import android.util.Log;
 
 public class Player {
 
-    protected String uid;
-    protected String name;
-    protected String points;
+    public String uid;
+    public String name;
+    public String points;
     private AnswersPlayer round1;
     private AnswersPlayer round2;
     private AnswersPlayer round3;

@@ -1,4 +1,4 @@
-package com.example.pubquizremote;
+package com.example.pubquizremote.models;
 
 import android.util.Log;
 
@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.ViewModel;
 
+import com.example.pubquizremote.QuestionData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;

@@ -1,4 +1,4 @@
-package com.example.pubquizremote;
+package com.example.pubquizremote.activities;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -12,6 +12,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.pubquizremote.Player;
+import com.example.pubquizremote.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -28,7 +31,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
-public class MainActivity extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity {
 
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
@@ -45,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseUser user = auth.getCurrentUser();
         if(user != null){
-            Intent intent = new Intent(getApplicationContext(),LoggedInHomeActivity.class);
+            Intent intent = new Intent(getApplicationContext(), LoggedInActivity.class);
             startActivity(intent);
         }
     }
@@ -124,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                             String uid = user.getUid();
                             ref_players.child(uid).setValue(player);
 
-                            Intent intent = new Intent(getApplicationContext(),LoggedInHomeActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), LoggedInActivity.class);
                             startActivity(intent);
 
                         } else {
