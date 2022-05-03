@@ -7,13 +7,13 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pubquizremote.models.AdminSettingsViewModel;
-import com.example.pubquizremote.databinding.AdminSettingsActivityBinding;
+import com.example.pubquizremote.databinding.ActivityAdminSettingsBinding;
 
 
 
 public class AdminSettingsActivity extends AppCompatActivity {
 
-    public AdminSettingsActivityBinding binding;
+    public ActivityAdminSettingsBinding binding;
 
 
     @Override
@@ -24,7 +24,7 @@ public class AdminSettingsActivity extends AppCompatActivity {
         String uid = bundle.getString("uid");
         //Log.w("Debug_A", "AdminSettingsActivity -> uid: "+uid);
 
-        binding = AdminSettingsActivityBinding.inflate(getLayoutInflater());
+        binding = ActivityAdminSettingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         AdminSettingsViewModel adminSettingsViewModel = new AdminSettingsViewModel(getApplication());

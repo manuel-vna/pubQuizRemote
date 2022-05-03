@@ -10,7 +10,7 @@
 
     <include
         android:id="@+id/app_bar_logged_in_home"
-        layout="@layout/app_bar_logged_in_home"
+        layout="@layout/nav_app_bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -21,5 +21,5 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_logged_in_home"
-        app:menu="@menu/activity_main_drawer" />
+        app:menu="@menu/navigation_drawer" />
 </androidx.drawerlayout.widget.DrawerLayout>

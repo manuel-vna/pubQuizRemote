@@ -15,7 +15,7 @@
         android:id="@+id/nav_round1"
         android:name="com.example.pubquizremote.fragments.AbcdRoundFragment"
         android:label="@string/menu_roundOne"
-        tools:layout="@layout/abcd_round_fragment" />
+        tools:layout="@layout/fragment_abcd_round" />
 
     <fragment
         android:id="@+id/nav_round2"
@@ -27,12 +27,12 @@
         android:id="@+id/nav_round3"
         android:name="com.example.pubquizremote.fragments.ImageRoundFragment"
         android:label="@string/menu_roundThree"
-        tools:layout="@layout/abcd_round_fragment" />
+        tools:layout="@layout/fragment_abcd_round" />
 
     <fragment
         android:id="@+id/nav_round4"
         android:name="com.example.pubquizremote.fragments.AbcdRoundFragment"
         android:label="@string/menu_roundFour"
-        tools:layout="@layout/abcd_round_fragment" />
+        tools:layout="@layout/fragment_abcd_round" />
 
 </navigation>

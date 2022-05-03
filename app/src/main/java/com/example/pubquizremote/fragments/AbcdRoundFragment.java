@@ -22,7 +22,7 @@ public class AbcdRoundFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.abcd_round_fragment, container, false);
+        return inflater.inflate(R.layout.fragment_abcd_round, container, false);
     }
 
     @Override
