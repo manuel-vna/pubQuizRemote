@@ -9,13 +9,21 @@
         android:id="@+id/nav_infopage"
         android:name="com.example.pubquizremote.fragments.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_infopage_to_nav_round1"
+            app:destination="@id/nav_round1" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_round1"
         android:name="com.example.pubquizremote.fragments.AbcdRoundFragment"
         android:label="@string/menu_roundOne"
-        tools:layout="@layout/fragment_abcd_round" />
+        tools:layout="@layout/fragment_abcd_round" >
+        <action
+            android:id="@+id/action_nav_round1_to_nav_infopage"
+            app:destination="@id/nav_infopage" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_round2"

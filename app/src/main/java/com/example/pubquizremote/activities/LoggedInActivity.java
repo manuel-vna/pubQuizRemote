@@ -10,11 +10,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pubquizremote.R;
+import com.example.pubquizremote.fragments.AbcdRoundFragment;
+import com.example.pubquizremote.fragments.HomeFragment;
+import com.example.pubquizremote.fragments.ImageRoundFragment;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -34,12 +41,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class LoggedInActivity extends AppCompatActivity {
+
+public class LoggedInActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityLoggedInHomeBinding binding;
     private TextView navigationDrawerPoints;
-
+    private String current_round;
+    Fragment fragment;
+    Bundle b;
     FirebaseAuth auth;
     String uid;
 
@@ -68,8 +78,6 @@ public class LoggedInActivity extends AppCompatActivity {
         NavigationView navigationView = binding.navView;
 
 
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_infopage, R.id.nav_round1, R.id.nav_round2, R.id.nav_round3,R.id.nav_round4)
                 .setOpenableLayout(drawer)
@@ -80,6 +88,8 @@ public class LoggedInActivity extends AppCompatActivity {
 
 
         setFieldsHeaderView(navigationView,database,uid);
+
+        setNavigationViewListener();
 
     }
 
@@ -130,6 +140,51 @@ public class LoggedInActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
+    private void setNavigationViewListener() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+
+    void fragment_transaction(String current_round, Fragment fragment){
+        Bundle b = new Bundle();
+        b.putString("message", current_round);
+        fragment.setArguments(b);
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.nav_host_fragment, fragment);
+        ft.commit();
+        binding.drawerLayout.closeDrawers();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_infopage: {
+                fragment_transaction("round0",new HomeFragment());
+                break;
+            }
+            case R.id.nav_round1: {
+                fragment_transaction("round1",new AbcdRoundFragment());
+                break;
+            }
+            case R.id.nav_round2: {
+                fragment_transaction("round2",new ImageRoundFragment());
+                break;
+            }
+            case R.id.nav_round3: {
+                fragment_transaction("round3",new ImageRoundFragment());
+                break;
+            }
+            case R.id.nav_round4: {
+                fragment_transaction("round4",new ImageRoundFragment());
+                break;
+            }
+        }
+        return true;
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
