@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.pubquizremote.QuestionData;
@@ -26,20 +27,24 @@ public class ImageRoundFragment extends Fragment {
 
     private FragmentImageRoundBinding binding;
     private SharedRoundsViewModel sharedRoundsViewModel;
-    public String round = "round1";
+    private String current_round;
     String[] questionNos = {"1", "2", "3", "4", "5", "6"};
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://pub-quiz-remote-default-rtdb.europe-west1.firebasedatabase.app");
     FirebaseAuth auth = FirebaseAuth.getInstance();
     String uid = auth.getCurrentUser().getUid();
-    public List<QuestionData> questionDataList3;
+    public List<QuestionData> questionDataListResult;
 
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+        Bundle bundle = getArguments();
+        String current_round = bundle.getString("message");
+        Log.i("Debug_A", "ABCD Fragment - current_round: "+current_round);
+
         sharedRoundsViewModel = new ViewModelProvider(this).get(SharedRoundsViewModel.class);
-        sharedRoundsViewModel.get_images(round);
+        sharedRoundsViewModel.get_data("round2");
 
         binding = FragmentImageRoundBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -50,24 +55,26 @@ public class ImageRoundFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        final Observer<List<QuestionData>> resultObserver = new Observer<List<QuestionData>>(){
+            @Override
+            public void onChanged(@Nullable final List<QuestionData> result){
+                questionDataListResult = result;
+                Log.i("Debug_A", "ABCD Fragment - questionData: "+questionDataListResult);
+                set_images_in_ui_views(questionDataListResult);
+            }
+        };
 
-        questionDataList3 = sharedRoundsViewModel.questionDataList2;
-        //Log.w("Debug_A", "questionDataList A1"+questionDataList3);
-        send_images_to_ui_fragment(questionDataList3);
-
+        sharedRoundsViewModel.getResult().observe(getViewLifecycleOwner(),resultObserver);
 
     }
 
 
 
-    public void send_images_to_ui_fragment(List<QuestionData> questionDataList){
+    public void set_images_in_ui_views(List<QuestionData> questionDataList){
 
         Log.w("Debug_A", "questionDataList A2"+questionDataList);
 
         for (QuestionData question_block : questionDataList) {
-
-            //Log.w("Debug_A", "questionNo: "+question_block.questionNo);
-            //Log.w("Debug_A", "correctAnswer: "+question_block.correctAnswer);
 
             switch (question_block.questionNo) {
                 case "1":

@@ -86,8 +86,8 @@ public class AdminSettingsViewModel extends AndroidViewModel{
     public void add_question_to_round(String questionText, String questionNo,
                                              String roundNo, String correctAnswer){
 
-        QuestionData questionData = new QuestionData(questionText,questionNo,roundNo,correctAnswer,"");
-        ref_db_global_game_data.child(roundNo).child(questionNo).setValue(questionData);
+        //QuestionData questionData = new QuestionData(questionText,questionNo,roundNo,correctAnswer,"");
+        //ref_db_global_game_data.child(roundNo).child(questionNo).setValue(questionData);
     }
 
 
