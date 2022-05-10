@@ -84,10 +84,10 @@ public class AdminSettingsViewModel extends AndroidViewModel{
     }
 
     public void add_question_to_round(String questionText, String questionNo,
-                                             String roundNo, String correctAnswer){
+                                             String roundNo, String answerCorrect){
 
-        //QuestionData questionData = new QuestionData(questionText,questionNo,roundNo,correctAnswer,"");
-        //ref_db_global_game_data.child(roundNo).child(questionNo).setValue(questionData);
+        QuestionData questionData = new QuestionData(questionText,questionNo,roundNo,answerCorrect,"");
+        ref_db_global_game_data.child(roundNo).child(questionNo).setValue(questionData);
     }
 
 
@@ -169,8 +169,8 @@ public class AdminSettingsViewModel extends AndroidViewModel{
 
                             is_type_radio_group = level1.child("round1/is_type_radio_group").getValue().toString();
                             for (DataSnapshot a : level1.child("round1").getChildren()){
-                                if (a.child("correctAnswer").exists()) {
-                                    correct_answers.add(a.child("correctAnswer").getValue().toString());
+                                if (a.child("answerCorrect").exists()) {
+                                    correct_answers.add(a.child("answerCorrect").getValue().toString());
                                 }
                             }
                         }

@@ -123,7 +123,7 @@
         tools:text="Dies ist eine Frage?" />
 
     <RadioGroup
-        android:id="@+id/answerOptions"
+        android:id="@+id/answerOptions1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/guideline8"
@@ -150,12 +150,157 @@
             tools:text="answer C" />
     </RadioGroup>
 
+    <RadioGroup
+        android:id="@+id/answerOptions2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/guideline8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline6">
+
+        <RadioButton
+            android:id="@+id/answerOptionA2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="answer A2" />
+
+        <RadioButton
+            android:id="@+id/answerOptionB2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="answer B2" />
+
+        <RadioButton
+            android:id="@+id/answerOptionC2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="answer C2" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/answerOptions3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/guideline8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline6">
+
+        <RadioButton
+            android:id="@+id/answerOptionA3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="answer A2" />
+
+        <RadioButton
+            android:id="@+id/answerOptionB3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="answer B2" />
+
+        <RadioButton
+            android:id="@+id/answerOptionC3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="answer C2" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/answerOptions4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/guideline8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline6">
+
+        <RadioButton
+            android:id="@+id/answerOptionA4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="answer A2" />
+
+        <RadioButton
+            android:id="@+id/answerOptionB4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="answer B2" />
+
+        <RadioButton
+            android:id="@+id/answerOptionC4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="answer C2" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/answerOptions5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/guideline8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline6">
+
+        <RadioButton
+            android:id="@+id/answerOptionA5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="answer A2" />
+
+        <RadioButton
+            android:id="@+id/answerOptionB5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="answer B2" />
+
+        <RadioButton
+            android:id="@+id/answerOptionC5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="answer C2" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/answerOptions6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/guideline8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline6">
+
+        <RadioButton
+            android:id="@+id/answerOptionA6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="answer A2" />
+
+        <RadioButton
+            android:id="@+id/answerOptionB6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="answer B2" />
+
+        <RadioButton
+            android:id="@+id/answerOptionC6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="answer C2" />
+    </RadioGroup>
+
     <Button
-        android:id="@+id/buttonSubmitAnswers"
+        android:id="@+id/UserSaveAnswersAbcdRound"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/black"
-        android:text="Speichern"
+        android:text="Antworten abschicken"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

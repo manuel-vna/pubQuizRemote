@@ -82,7 +82,7 @@ public class TestingFragment extends Fragment implements View.OnClickListener {
         binding.pic6.setOnClickListener(this);
         binding.radioButtonOne.setOnClickListener(this);
         binding.radioButtonTwo.setOnClickListener(this);
-        binding.UserSaveAnswers.setOnClickListener(this);
+        binding.UserSaveAnswersImageRound.setOnClickListener(this);
 
         // initialising arraylist with default values. These will be overwritten by database values within load_images_from_db().onDataChange()
         answer_options.add("1");
