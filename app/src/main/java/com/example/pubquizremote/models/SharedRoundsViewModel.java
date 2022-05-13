@@ -3,6 +3,7 @@ package com.example.pubquizremote.models;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +14,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
+import com.example.pubquizremote.AnswersPlayer;
 import com.example.pubquizremote.QuestionData;
 import com.example.pubquizremote.fragments.AbcdRoundFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -111,6 +113,26 @@ public class SharedRoundsViewModel extends ViewModel {
 
     private interface LoadDataCallback {
         void onCallback(List<QuestionData> qdList,String round);
+    }
+
+
+    public void safe_player_answers_to_db(String current_round, AnswersPlayer answersPlayer) {
+
+        if (answersPlayer.getPlayerAnswer1() == null || answersPlayer.getPlayerAnswer2() == null ||
+                answersPlayer.getPlayerAnswer3() == null || answersPlayer.getPlayerAnswer4() == null ||
+                answersPlayer.getPlayerAnswer5() == null || answersPlayer.getPlayerAnswer6() == null
+        ){
+            Log.w("Debug_A", "Bitte alle 6 Fragen ausfüllen, um speichern zu können!");
+            //Toast.makeText(getContext(), "Bitte alle 6 Fragen ausfüllen, um speichern zu können!", Toast.LENGTH_LONG).show();
+        }
+        else {
+            //auth = FirebaseAuth.getInstance();
+            //FirebaseDatabase database = FirebaseDatabase.getInstance("https://pub-quiz-remote-default-rtdb.europe-west1.firebasedatabase.app");
+            String uid = auth.getCurrentUser().getUid();
+
+            DatabaseReference ref_player_answers = database.getReference("player_data").child(uid).child(current_round);
+            ref_player_answers.setValue(answersPlayer);
+        }
     }
 
 }
