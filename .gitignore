@@ -13,4 +13,4 @@
 .externalNativeBuild
 .cxx
 local.properties
-app/src/test/java/com/example/pubquizremote
+app/src/androidTest/java/com/example/pubquizremote
