@@ -51,6 +51,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
+    <!-- Shared Preferences -->
+    <string name="abcdRound">abcdRound</string>
+
+
+
     <!-- Spinner Field in: AdminSwttingsActivity -->
     <string-array name="sections_array">
         <item>1</item>

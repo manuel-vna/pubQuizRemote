@@ -117,22 +117,10 @@ public class SharedRoundsViewModel extends ViewModel {
 
 
     public void safe_player_answers_to_db(String current_round, AnswersPlayer answersPlayer) {
+        String uid = auth.getCurrentUser().getUid();
+        DatabaseReference ref_player_answers = database.getReference("player_data").child(uid).child(current_round);
+        ref_player_answers.setValue(answersPlayer);
 
-        if (answersPlayer.getPlayerAnswer1() == null || answersPlayer.getPlayerAnswer2() == null ||
-                answersPlayer.getPlayerAnswer3() == null || answersPlayer.getPlayerAnswer4() == null ||
-                answersPlayer.getPlayerAnswer5() == null || answersPlayer.getPlayerAnswer6() == null
-        ){
-            Log.w("Debug_A", "Bitte alle 6 Fragen ausfüllen, um speichern zu können!");
-            //Toast.makeText(getContext(), "Bitte alle 6 Fragen ausfüllen, um speichern zu können!", Toast.LENGTH_LONG).show();
-        }
-        else {
-            //auth = FirebaseAuth.getInstance();
-            //FirebaseDatabase database = FirebaseDatabase.getInstance("https://pub-quiz-remote-default-rtdb.europe-west1.firebasedatabase.app");
-            String uid = auth.getCurrentUser().getUid();
-
-            DatabaseReference ref_player_answers = database.getReference("player_data").child(uid).child(current_round);
-            ref_player_answers.setValue(answersPlayer);
-        }
     }
 
 }

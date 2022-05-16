@@ -126,22 +126,22 @@ public class AdminSettingsViewModel extends AndroidViewModel{
     private void calculate_points(List<String> correct_answers,List<AnswersPlayer> answers_players_objects) {
 
         for (AnswersPlayer user_block : answers_players_objects) {
-            if (user_block.playerAnswer1.equals(correct_answers.get(0))){
+            if (user_block.playerAnswer0.equals(correct_answers.get(0))){
                 round_score += 1;
             }
-            if (user_block.playerAnswer2.equals(correct_answers.get(1))){
+            if (user_block.playerAnswer1.equals(correct_answers.get(1))){
                 round_score += 1;
                     }
-            if (user_block.playerAnswer3.equals(correct_answers.get(2))){
+            if (user_block.playerAnswer2.equals(correct_answers.get(2))){
                 round_score += 1;
             }
-            if (user_block.playerAnswer4.equals(correct_answers.get(3))){
+            if (user_block.playerAnswer3.equals(correct_answers.get(3))){
                 round_score += 1;
             }
-            if (user_block.playerAnswer5.equals(correct_answers.get(4))){
+            if (user_block.playerAnswer4.equals(correct_answers.get(4))){
                 round_score += 1;
             }
-            if (user_block.playerAnswer6.equals(correct_answers.get(5))){
+            if (user_block.playerAnswer5.equals(correct_answers.get(5))){
                 round_score += 1;
             }
             pre_update_score = user_block.points;
