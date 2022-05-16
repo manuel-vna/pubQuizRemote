@@ -54,6 +54,13 @@
     <!-- Shared Preferences -->
     <string name="abcdRound">abcdRound</string>
 
+    <!-- System Messages -->
+    <string name="no_selection">no_selection</string>
+
+    <!-- Messages to Users-->
+    <string name="messagetoUser_answers_incomplete">Es sind noch nicht alle 6 Fragen beantwortet!</string>
+
+
 
 
     <!-- Spinner Field in: AdminSwttingsActivity -->

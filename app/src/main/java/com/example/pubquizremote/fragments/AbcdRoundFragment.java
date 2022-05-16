@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TableLayout;
+import android.widget.Toast;
+
 import com.example.pubquizremote.AnswersPlayer;
 import com.example.pubquizremote.QuestionData;
 import com.example.pubquizremote.R;
@@ -44,10 +46,11 @@ public class AbcdRoundFragment extends Fragment {
     private RadioButton selectedRadioButton;
     private int selectedRadioButtonId;
     private int selectedRadioButtonIdXml;
-    int radioButtonToSet;
+    int radioButtonToSetID;
     private String textOfSelectedRadioButton;
     AnswersPlayer answersPlayer;
     SharedPreferences sharedPrefAbcdRound;
+    String answerOption;
 
 
 
@@ -116,9 +119,7 @@ public class AbcdRoundFragment extends Fragment {
                 editor.putInt(String.valueOf(tabSelectedPosition),selectedRadioButtonIdXml);
                 editor.apply();
 
-                buffer_users_radio_choice(selectedRadioButtonId,tabSelectedPosition,answersPlayer);
             }
-
         });
 
 
@@ -138,81 +139,57 @@ public class AbcdRoundFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                /*
                 SharedPreferences sharedPrefAbcdRound = getActivity().getSharedPreferences(getString(R.string.abcdRound), Context.MODE_PRIVATE);
 
+                int toast_count = 0;
+                //iterate over the six questions
                 for (int i = 0; i <= 5; i++) {
 
-                    radioButtonToSet = sharedPrefAbcdRound.getInt(String.valueOf(i),1);
-                    Log.i("Debug_A", "A: "+String.valueOf(radioButtonToSet % 100));
-                    selectedRadioButton = binding.getRoot().findViewById(radioButtonToSet);
-                    textOfSelectedRadioButton = (selectedRadioButton != null)
-                            ? (String) selectedRadioButton.getText() : "no selection";
+                    radioButtonToSetID = sharedPrefAbcdRound.getInt(String.valueOf(i),1);
+
+                    if (radioButtonToSetID == R.id.answerOptionA){
+                        answerOption = questionDataListResult.get(i).answerOptionA;
+                    }
+                    else if (radioButtonToSetID == R.id.answerOptionB){
+                        answerOption = questionDataListResult.get(i).answerOptionB;
+                    }
+                    else if (radioButtonToSetID == R.id.answerOptionC){
+                        answerOption = questionDataListResult.get(i).answerOptionC;
+                    }
+                    else {
+                        answerOption = "no_selection";
+                        if (toast_count < 1) {
+                            Toast.makeText(getContext(), R.string.messagetoUser_answers_incomplete, Toast.LENGTH_LONG).show();
+                        }
+                        toast_count += 1;
+                    }
 
                     switch (i) {
                         case 0:
-                            answersPlayer.setPlayerAnswer0(textOfSelectedRadioButton);
+                            answersPlayer.setPlayerAnswer0(answerOption);
                             break;
                         case 1:
-                            answersPlayer.setPlayerAnswer1(textOfSelectedRadioButton);
+                            answersPlayer.setPlayerAnswer1(answerOption);
                             break;
                         case 2:
-                            answersPlayer.setPlayerAnswer2(textOfSelectedRadioButton);
+                            answersPlayer.setPlayerAnswer2(answerOption);
                             break;
                         case 3:
-                            answersPlayer.setPlayerAnswer3(textOfSelectedRadioButton);
+                            answersPlayer.setPlayerAnswer3(answerOption);
                             break;
                         case 4:
-                            answersPlayer.setPlayerAnswer4(textOfSelectedRadioButton);
+                            answersPlayer.setPlayerAnswer4(answerOption);
                             break;
                         case 5:
-                            answersPlayer.setPlayerAnswer5(textOfSelectedRadioButton);
+                            answersPlayer.setPlayerAnswer5(answerOption);
                             break;
                     }
                 }
-                 */
-
                 sharedRoundsViewModel.safe_player_answers_to_db(current_round,answersPlayer);
             }
         });
 
     }
-
-
-
-    public void buffer_users_radio_choice(int selectedRadioButtonId,int tabSelectedPosition,AnswersPlayer answersPlayer) {
-
-        selectedRadioButton = binding.getRoot().findViewById(selectedRadioButtonId);
-        //ternary operator
-        textOfSelectedRadioButton = selectedRadioButton != null
-                ? (String) selectedRadioButton.getText() : "no selection";
-
-        // write radioButton selection of previous tab to the answerPlayer instance object if something is selected
-        switch (tabSelectedPosition) {
-            case 0:
-                answersPlayer.setPlayerAnswer0(textOfSelectedRadioButton);
-                break;
-            case 1:
-                answersPlayer.setPlayerAnswer1(textOfSelectedRadioButton);
-                break;
-            case 2:
-                answersPlayer.setPlayerAnswer2(textOfSelectedRadioButton);
-                break;
-            case 3:
-                answersPlayer.setPlayerAnswer3(textOfSelectedRadioButton);
-                break;
-            case 4:
-                answersPlayer.setPlayerAnswer4(textOfSelectedRadioButton);
-                break;
-            case 5:
-                answersPlayer.setPlayerAnswer5(textOfSelectedRadioButton);
-                break;
-        }
-
-    }
-
-
-
 
 
     public void set_views(int tabSelectedPosition,List<QuestionData> questionDataListResult,AnswersPlayer answersPlayer){
