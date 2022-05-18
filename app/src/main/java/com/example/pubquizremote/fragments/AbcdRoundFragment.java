@@ -17,8 +17,8 @@ import android.widget.RadioGroup;
 import android.widget.TableLayout;
 import android.widget.Toast;
 
-import com.example.pubquizremote.AnswersPlayer;
-import com.example.pubquizremote.QuestionData;
+import com.example.pubquizremote.dataobjects.AnswersPlayerData;
+import com.example.pubquizremote.dataobjects.QuestionData;
 import com.example.pubquizremote.R;
 import com.example.pubquizremote.databinding.FragmentAbcdRoundBinding;
 import com.example.pubquizremote.models.SharedRoundsViewModel;
@@ -26,7 +26,6 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
-import java.util.Map;
 
 
 public class AbcdRoundFragment extends Fragment {
@@ -48,7 +47,7 @@ public class AbcdRoundFragment extends Fragment {
     private int selectedRadioButtonIdXml;
     int radioButtonToSetID;
     private String textOfSelectedRadioButton;
-    AnswersPlayer answersPlayer;
+    AnswersPlayerData answersPlayer;
     SharedPreferences sharedPrefAbcdRound;
     String answerOption;
 
@@ -80,7 +79,7 @@ public class AbcdRoundFragment extends Fragment {
         sharedRoundsViewModel = new ViewModelProvider(this).get(SharedRoundsViewModel.class);
         sharedRoundsViewModel.get_data(current_round);
 
-        AnswersPlayer answersPlayer = new AnswersPlayer();
+        AnswersPlayerData answersPlayer = new AnswersPlayerData();
 
         TabLayout tabLayout = binding.tabLayout;
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -192,7 +191,7 @@ public class AbcdRoundFragment extends Fragment {
     }
 
 
-    public void set_views(int tabSelectedPosition,List<QuestionData> questionDataListResult,AnswersPlayer answersPlayer){
+    public void set_views(int tabSelectedPosition, List<QuestionData> questionDataListResult, AnswersPlayerData answersPlayer){
 
         SharedPreferences sharedPrefAbcdRound = getActivity().getSharedPreferences(getString(R.string.abcdRound), Context.MODE_PRIVATE);
         int defaultValue = -1;

@@ -13,7 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.pubquizremote.Player;
+import com.example.pubquizremote.dataobjects.PlayerData;
 import com.example.pubquizremote.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -123,9 +123,9 @@ public class SignInActivity extends AppCompatActivity {
                             FirebaseUser user = auth.getCurrentUser();
 
                             //save player in database
-                            Player player = new Player(user.getDisplayName(),"0");
+                            PlayerData playerData = new PlayerData(user.getDisplayName(),"0");
                             String uid = user.getUid();
-                            ref_players.child(uid).setValue(player);
+                            ref_players.child(uid).setValue(playerData);
 
                             Intent intent = new Intent(getApplicationContext(), LoggedInActivity.class);
                             startActivity(intent);

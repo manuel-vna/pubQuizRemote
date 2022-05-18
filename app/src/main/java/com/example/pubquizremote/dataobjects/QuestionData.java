@@ -1,4 +1,4 @@
-package com.example.pubquizremote;
+package com.example.pubquizremote.dataobjects;
 
 import android.os.Parcel;
 import android.os.Parcelable;

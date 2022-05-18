@@ -1,6 +1,6 @@
-package com.example.pubquizremote;
+package com.example.pubquizremote.dataobjects;
 
-public class AnswersPlayer extends Player{
+public class AnswersPlayerData extends PlayerData {
 
         public String playerAnswer0;
         public String playerAnswer1;
@@ -9,19 +9,19 @@ public class AnswersPlayer extends Player{
         public String playerAnswer4;
         public String playerAnswer5;
 
-    public AnswersPlayer(){
+    public AnswersPlayerData(){
         this(null, null, null,null,null,null, null, null,null);
 
     }
 
-    public AnswersPlayer(String playerAnswer0, String playerAnswer1, String playerAnswer2,
-                         String playerAnswer3, String playerAnswer4, String playerAnswer5){
+    public AnswersPlayerData(String playerAnswer0, String playerAnswer1, String playerAnswer2,
+                             String playerAnswer3, String playerAnswer4, String playerAnswer5){
         this(null, null, null,playerAnswer0,playerAnswer1,playerAnswer2,playerAnswer3,playerAnswer4,playerAnswer5);
 
     }
 
-    public AnswersPlayer(String uid, String name, String points, String playerAnswer0, String playerAnswer1, String playerAnswer2,
-                         String playerAnswer3, String playerAnswer4, String playerAnswer5){
+    public AnswersPlayerData(String uid, String name, String points, String playerAnswer0, String playerAnswer1, String playerAnswer2,
+                             String playerAnswer3, String playerAnswer4, String playerAnswer5){
             this.uid = uid;
             this.name = name;
             this.points = points;

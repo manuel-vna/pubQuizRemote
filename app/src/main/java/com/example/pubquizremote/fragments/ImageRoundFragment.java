@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,8 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.pubquizremote.AnswersPlayer;
-import com.example.pubquizremote.QuestionData;
+import com.example.pubquizremote.dataobjects.AnswersPlayerData;
+import com.example.pubquizremote.dataobjects.QuestionData;
 import com.example.pubquizremote.models.SharedRoundsViewModel;
 import com.example.pubquizremote.databinding.FragmentImageRoundBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,7 +24,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,7 +39,7 @@ public class ImageRoundFragment extends Fragment {
     String uid = auth.getCurrentUser().getUid();
     public List<QuestionData> questionDataListResult;
     List<String> answer_options = Arrays.asList("0", "1", "2", "3", "4", "5");
-    AnswersPlayer answersPlayer;
+    AnswersPlayerData answersPlayer;
     String spinnerAnswerOptions1;
     String spinnerAnswerOptions2;
     String spinnerAnswerOptions3;
@@ -109,27 +107,27 @@ public class ImageRoundFragment extends Fragment {
                         break;
                     case "2":
                         Picasso.get().load(question_block.picture).into(binding.pic2);
-                        answer_options.set(4, question_block.answerCorrect);
+                        answer_options.set(1, question_block.answerCorrect);
                         binding.textView2.setText(question_block.question);
                         break;
                     case "3":
                         Picasso.get().load(question_block.picture).into(binding.pic3);
-                        answer_options.set(1, question_block.answerCorrect);
+                        answer_options.set(2, question_block.answerCorrect);
                         binding.textView3.setText(question_block.question);
                         break;
                     case "4":
                         Picasso.get().load(question_block.picture).into(binding.pic4);
-                        answer_options.set(5, question_block.answerCorrect);
+                        answer_options.set(3, question_block.answerCorrect);
                         binding.textView4.setText(question_block.question);
                         break;
                     case "5":
                         Picasso.get().load(question_block.picture).into(binding.pic5);
-                        answer_options.set(3, question_block.answerCorrect);
+                        answer_options.set(4, question_block.answerCorrect);
                         binding.textView5.setText(question_block.question);
                         break;
                     case "6":
                         Picasso.get().load(question_block.picture).into(binding.pic6);
-                        answer_options.set(2, question_block.answerCorrect);
+                        answer_options.set(5, question_block.answerCorrect);
                         binding.textView6.setText(question_block.question);
                         break;
                 }
@@ -176,7 +174,7 @@ public class ImageRoundFragment extends Fragment {
                 ? binding.spinnerAnswerOptions6.getSelectedItem().toString()
                 : "";
 
-        answersPlayer = new AnswersPlayer(
+        answersPlayer = new AnswersPlayerData(
                 spinnerAnswerOptions1,
                 spinnerAnswerOptions2,
                 spinnerAnswerOptions3,

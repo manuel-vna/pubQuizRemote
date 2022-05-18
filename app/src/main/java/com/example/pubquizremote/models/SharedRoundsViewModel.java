@@ -1,34 +1,21 @@
 package com.example.pubquizremote.models;
 
-import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
-import com.example.pubquizremote.AnswersPlayer;
-import com.example.pubquizremote.QuestionData;
-import com.example.pubquizremote.fragments.AbcdRoundFragment;
+import com.example.pubquizremote.dataobjects.AnswersPlayerData;
+import com.example.pubquizremote.dataobjects.QuestionData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class SharedRoundsViewModel extends ViewModel {
@@ -116,7 +103,7 @@ public class SharedRoundsViewModel extends ViewModel {
     }
 
 
-    public void safe_player_answers_to_db(String current_round, AnswersPlayer answersPlayer) {
+    public void safe_player_answers_to_db(String current_round, AnswersPlayerData answersPlayer) {
         String uid = auth.getCurrentUser().getUid();
         DatabaseReference ref_player_answers = database.getReference("player_data").child(uid).child(current_round);
         ref_player_answers.setValue(answersPlayer);
