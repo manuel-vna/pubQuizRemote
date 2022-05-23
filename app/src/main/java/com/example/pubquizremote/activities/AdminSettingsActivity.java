@@ -14,6 +14,9 @@ import com.example.pubquizremote.utils.AdminSettingsCalculations;
 public class AdminSettingsActivity extends AppCompatActivity {
 
     public ActivityAdminSettingsBinding binding;
+    AdminSettingsViewModel adminSettingsViewModel = new AdminSettingsViewModel();
+    //AdminSettingsCalculations adminSettingsCalculations = new AdminSettingsCalculations();
+
 
 
     @Override
@@ -26,24 +29,19 @@ public class AdminSettingsActivity extends AppCompatActivity {
         binding = ActivityAdminSettingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        AdminSettingsViewModel adminSettingsViewModel = new AdminSettingsViewModel();
-        AdminSettingsCalculations adminSettingsCalculations= new AdminSettingsCalculations();
-
-
+/*
         binding.buttonInitialiseDB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 adminSettingsCalculations.set_initial_db_structure();
             }
         });
-
+*/
 
         binding.buttonCalculateRound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 adminSettingsViewModel.evaluate_results_of_round();
-
             }
         });
 
@@ -55,6 +53,7 @@ public class AdminSettingsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
     }
 

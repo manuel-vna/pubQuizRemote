@@ -42,7 +42,7 @@ public class AdminSettingsCalculations {
             put("global_game_data", second_level_rounds);
         }};
 
-        adminSettingsViewModel.set_initial_db_structure(first_db_level);
+        adminSettingsViewModel.write_initial_db_structure(first_db_level);
     }
 
 
@@ -73,5 +73,6 @@ public class AdminSettingsCalculations {
             adminSettingsViewModel.set_points_in_db(user_block.uid,new_score);
             round_score = 0;
         }
+
     }
 }

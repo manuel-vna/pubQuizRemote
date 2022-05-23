@@ -52,7 +52,7 @@ public class AdminSettingsViewModel extends ViewModel {
      */
 
 
-    public void set_initial_db_structure(Map<String, Object> first_db_level){
+    public void write_initial_db_structure(Map<String, Object> first_db_level){
         ref_db_first_level.setValue(first_db_level);
     }
 
@@ -65,7 +65,7 @@ public class AdminSettingsViewModel extends ViewModel {
                 answerCorrectList = list1;
                 answers_players_objects = list2;
 
-                adminSettingsCalculations.calculate_points(answerCorrectList,answers_players_objects);
+                //adminSettingsCalculations.calculate_points(answerCorrectList,answers_players_objects);
 
                 answerCorrectList.clear();
                 answers_players_objects.clear();
