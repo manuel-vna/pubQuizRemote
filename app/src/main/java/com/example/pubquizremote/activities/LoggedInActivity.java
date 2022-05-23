@@ -2,24 +2,21 @@ package com.example.pubquizremote.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.pubquizremote.R;
 import com.example.pubquizremote.fragments.AbcdRoundFragment;
 import com.example.pubquizremote.fragments.HomeFragment;
 import com.example.pubquizremote.fragments.ImageRoundFragment;
+import com.example.pubquizremote.models.SharedRoundsViewModel;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
-
 import androidx.annotation.NonNull;
-import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
@@ -28,15 +25,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.pubquizremote.databinding.ActivityLoggedInHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -62,8 +53,8 @@ public class LoggedInActivity extends AppCompatActivity implements NavigationVie
         setContentView(binding.getRoot());
 
         auth = FirebaseAuth.getInstance();
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://pub-quiz-remote-default-rtdb.europe-west1.firebasedatabase.app");
         String uid = auth.getCurrentUser().getUid();
+        //FirebaseDatabase database = FirebaseDatabase.getInstance("https://pub-quiz-remote-default-rtdb.europe-west1.firebasedatabase.app");
 
 
         setSupportActionBar(binding.appBarLoggedInHome.toolbar);
@@ -74,9 +65,9 @@ public class LoggedInActivity extends AppCompatActivity implements NavigationVie
                         .setAction("Action", null).show();
             }
         });
+
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
-
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_infopage, R.id.nav_round1, R.id.nav_round2, R.id.nav_round3,R.id.nav_round4)
@@ -87,13 +78,13 @@ public class LoggedInActivity extends AppCompatActivity implements NavigationVie
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
-        setFieldsHeaderView(navigationView,database,uid);
+        setFieldsHeaderView(navigationView,uid);
 
         setNavigationViewListener();
 
     }
 
-    private void setFieldsHeaderView(NavigationView navigationView,FirebaseDatabase database,String uid) {
+    private void setFieldsHeaderView(NavigationView navigationView,String uid) {
 
         // set player NAME in NavigationView header
         View headerView = navigationView.getHeaderView(0);
@@ -103,28 +94,11 @@ public class LoggedInActivity extends AppCompatActivity implements NavigationVie
             navigationDrawerPoints.setText(signInAccount.getDisplayName());
         }
 
-        // set player POINTS in NavigationView header
-        ValueEventListener postListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the UI
-                String points = dataSnapshot.getValue(String.class);
-
-                TextView navigationDrawerPoints = (TextView) headerView.findViewById(R.id.NavigationDrawerPoints);
-                navigationDrawerPoints.setText("Aktuelle Punktzahl: "+points);
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
-                Log.w("Debug_A", "loadingPoints:onCancelled", databaseError.toException());
-            }
-        };
-        DatabaseReference ref_uid = database.getReference("players").child(uid).child("points");
-        ref_uid.addValueEventListener(postListener);
+        SharedRoundsViewModel sharedRoundsViewModel = new SharedRoundsViewModel();
+        sharedRoundsViewModel.current_player_points(headerView);
 
     }
+
 
 
     @Override

@@ -1,11 +1,12 @@
 package com.example.pubquizremote.models;
 
-import android.app.Application;
+
+import androidx.lifecycle.ViewModel;
 import android.util.Log;
 import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
 import com.example.pubquizremote.dataobjects.AnswersPlayerData;
 import com.example.pubquizremote.dataobjects.QuestionData;
+import com.example.pubquizremote.utils.AdminSettingsCalculations;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,11 +19,11 @@ import java.util.List;
 import java.util.Map;
 
 
-
-public class AdminSettingsViewModel extends AndroidViewModel{
+public class AdminSettingsViewModel extends ViewModel {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://pub-quiz-remote-default-rtdb.europe-west1.firebasedatabase.app");
     FirebaseAuth auth = FirebaseAuth.getInstance();
+    String uid;
 
     // database references
     DatabaseReference ref_db_first_level = database.getReference();
@@ -33,57 +34,28 @@ public class AdminSettingsViewModel extends AndroidViewModel{
     List<String> row = new ArrayList<String>();
     List<AnswersPlayerData> answers_players_objects = new ArrayList<AnswersPlayerData>();
 
-    //round variables
-    int round_score = 0;
-    String pre_update_score;
-    int new_score;
-
     //snapshots
     DataSnapshot user_block;
     DataSnapshot round;
 
+    //calculating points
+    int new_score;
 
+    AdminSettingsCalculations adminSettingsCalculations = new AdminSettingsCalculations();
+
+
+    /*
+    //AndoridViewModel constructor
     public AdminSettingsViewModel(@NonNull Application application) {
         super(application);
     }
+     */
 
 
-
-    public void initialise_db(){
-
-        Map<String, Object> third_level_rounds_radio_group_false  = new HashMap<String, Object>() {{
-            put("automated_evaluation", "false");
-
-        }};
-        Map<String, Object> third_level_rounds_radio_group_true  = new HashMap<String, Object>() {{
-            put("automated_evaluation", "true");
-
-        }};
-        Map<String, Object> second_level_rounds  = new HashMap<String, Object>() {{
-            put("round1", third_level_rounds_radio_group_true);
-            put("round2", third_level_rounds_radio_group_true);
-            put("round3", third_level_rounds_radio_group_false);
-            put("round4", third_level_rounds_radio_group_false);
-            put("round5", third_level_rounds_radio_group_false);
-            put("round6", third_level_rounds_radio_group_true);
-        }};
-
-        Map<String, Object> first_level  = new HashMap<String, Object>() {{
-            put("player_data", "");
-            put("global_game_data", second_level_rounds);
-        }};
-
-        //Log.w("Debug_A", String.valueOf(first_level));
-        ref_db_first_level.setValue(first_level);
-
+    public void set_initial_db_structure(Map<String, Object> first_db_level){
+        ref_db_first_level.setValue(first_db_level);
     }
 
-    public void add_question_to_round(String questionText, String questionNo,
-                                             String roundNo, String answerCorrect){
-
-        QuestionData questionData = new QuestionData(questionText,questionNo,roundNo,answerCorrect,"");
-        ref_db_global_game_data.child(roundNo).child(questionNo).setValue(questionData);
-    }
 
 
     public void evaluate_results_of_round() {
@@ -93,15 +65,13 @@ public class AdminSettingsViewModel extends AndroidViewModel{
                 answerCorrectList = list1;
                 answers_players_objects = list2;
 
-                calculate_points(answerCorrectList,answers_players_objects);
+                adminSettingsCalculations.calculate_points(answerCorrectList,answers_players_objects);
 
                 answerCorrectList.clear();
                 answers_players_objects.clear();
             }
         });
     }
-
-
 
     private void readData(FirebaseDBCallback firebaseDBCallback) {
 
@@ -145,35 +115,10 @@ public class AdminSettingsViewModel extends AndroidViewModel{
         void onCallback(List<String> list1,List<AnswersPlayerData> list2);
     }
 
-
-    private void calculate_points(List<String> answerCorrectList,List<AnswersPlayerData> answers_players_objects) {
-
-        for (AnswersPlayerData user_block : answers_players_objects) {
-            if (user_block.playerAnswer0.equals(answerCorrectList.get(0))){
-                round_score += 1;
-            }
-            if (user_block.playerAnswer1.equals(answerCorrectList.get(1))){
-                round_score += 1;
-            }
-            if (user_block.playerAnswer2.equals(answerCorrectList.get(2))){
-                round_score += 1;
-            }
-            if (user_block.playerAnswer3.equals(answerCorrectList.get(3))){
-                round_score += 1;
-            }
-            if (user_block.playerAnswer4.equals(answerCorrectList.get(4))){
-                round_score += 1;
-            }
-            if (user_block.playerAnswer5.equals(answerCorrectList.get(5))){
-                round_score += 1;
-            }
-            pre_update_score = user_block.points;
-            new_score = Integer.parseInt(pre_update_score) + round_score;
-            database.getReference().child("player_data").child(user_block.uid).child("points").setValue(String.valueOf(new_score));
-            Log.i("Debug_A", "Round Score: "+user_block.uid+" | " +String.valueOf(round_score)+ " | "+String.valueOf(new_score));
-            round_score = 0;
-        }
+    public void set_points_in_db(String uid,int new_score){
+        database.getReference().child("player_data").child(uid).child("points").setValue(String.valueOf(new_score));
     }
+
 
 }
 

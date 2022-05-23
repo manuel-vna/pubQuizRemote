@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pubquizremote.models.AdminSettingsViewModel;
 import com.example.pubquizremote.databinding.ActivityAdminSettingsBinding;
-
+import com.example.pubquizremote.utils.AdminSettingsCalculations;
 
 
 public class AdminSettingsActivity extends AppCompatActivity {
@@ -22,43 +22,18 @@ public class AdminSettingsActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         String uid = bundle.getString("uid");
-        //Log.w("Debug_A", "AdminSettingsActivity -> uid: "+uid);
 
         binding = ActivityAdminSettingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        AdminSettingsViewModel adminSettingsViewModel = new AdminSettingsViewModel(getApplication());
-
-
-        binding.buttonBackfromAdminSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), LoggedInActivity.class);
-                startActivity(intent);
-            }
-        });
+        AdminSettingsViewModel adminSettingsViewModel = new AdminSettingsViewModel();
+        AdminSettingsCalculations adminSettingsCalculations= new AdminSettingsCalculations();
 
 
         binding.buttonInitialiseDB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                adminSettingsViewModel.initialise_db();
-
-            }
-        });
-
-
-        binding.buttonAddQuestion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String round = "round1";
-                String question_no = "2";
-
-                adminSettingsViewModel.add_question_to_round(binding.editTextQuestion.getText().toString(),question_no,
-                        round,binding.editTextCorrectAnswer.getText().toString());
-
+                adminSettingsCalculations.set_initial_db_structure();
             }
         });
 
@@ -72,7 +47,15 @@ public class AdminSettingsActivity extends AppCompatActivity {
             }
         });
 
-    }
 
+        binding.buttonBackfromAdminSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), LoggedInActivity.class);
+                startActivity(intent);
+            }
+        });
+
+    }
 
 }
