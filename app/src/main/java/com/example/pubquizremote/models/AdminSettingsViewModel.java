@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import com.example.pubquizremote.dataobjects.AnswersPlayerData;
-import com.example.pubquizremote.dataobjects.QuestionData;
 import com.example.pubquizremote.utils.AdminSettingsCalculations;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -14,7 +13,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,21 +39,13 @@ public class AdminSettingsViewModel extends ViewModel {
     //calculating points
     int new_score;
 
-    AdminSettingsCalculations adminSettingsCalculations = new AdminSettingsCalculations();
-
-
-    /*
-    //AndoridViewModel constructor
-    public AdminSettingsViewModel(@NonNull Application application) {
-        super(application);
-    }
-     */
+    //instantiation
+    AdminSettingsCalculations adminSettingsCalculations = new AdminSettingsCalculations(this);
 
 
     public void write_initial_db_structure(Map<String, Object> first_db_level){
         ref_db_first_level.setValue(first_db_level);
     }
-
 
 
     public void evaluate_results_of_round() {
@@ -65,7 +55,7 @@ public class AdminSettingsViewModel extends ViewModel {
                 answerCorrectList = list1;
                 answers_players_objects = list2;
 
-                //adminSettingsCalculations.calculate_points(answerCorrectList,answers_players_objects);
+                adminSettingsCalculations.calculate_points(new AdminSettingsViewModel(),answerCorrectList,answers_players_objects);
 
                 answerCorrectList.clear();
                 answers_players_objects.clear();
@@ -100,9 +90,11 @@ public class AdminSettingsViewModel extends ViewModel {
                                 for (DataSnapshot round : user_block.child("round1").getChildren()) {
                                     row.add(round.getValue().toString());
                                 }
-                                answers_players_objects.add(new AnswersPlayerData(
-                                        user_block.getKey(),user_block.child("name").getValue().toString(),user_block.child("points").getValue().toString(),
-                                        row.get(0),row.get(1),row.get(2),row.get(3),row.get(4),row.get(5)));
+                                if (row != null && user_block != null) {
+                                    answers_players_objects.add(new AnswersPlayerData(
+                                            user_block.getKey(), user_block.child("name").getValue().toString(), user_block.child("points").getValue().toString(),
+                                            row.get(0), row.get(1), row.get(2), row.get(3), row.get(4), row.get(5)));
+                                }
                             }
                         }
                     }

@@ -1,21 +1,38 @@
 package com.example.pubquizremote.utils;
 
+
+import android.app.Application;
+import android.util.Log;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import com.example.pubquizremote.dataobjects.AnswersPlayerData;
 import com.example.pubquizremote.models.AdminSettingsViewModel;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AdminSettingsCalculations {
+
+public class AdminSettingsCalculations extends AppCompatActivity {
 
     int round_score = 0;
     String pre_update_score;
     int new_score;
     Map<String, Object> first_db_level;
+    AdminSettingsViewModel adminSettingsViewModel;
 
 
-    AdminSettingsViewModel adminSettingsViewModel = new AdminSettingsViewModel();
+    //constructors
+    public AdminSettingsCalculations(){
+        Log.i("Debug_A",
+                "class 'AdminSettingsCalculation' default constructor");
+    }
+    
+    public AdminSettingsCalculations(AdminSettingsViewModel adminSettingsViewModel) {
+        Log.i("Debug_A",
+                "class 'AdminSettingsCalculation' 2nd constructor");
+        adminSettingsViewModel = adminSettingsViewModel;
+    }
+
 
 
     public void set_initial_db_structure(){
@@ -47,7 +64,7 @@ public class AdminSettingsCalculations {
 
 
 
-    public void calculate_points(List<String> answerCorrectList, List<AnswersPlayerData> answers_players_objects) {
+    public void calculate_points(AdminSettingsViewModel adminSettingsViewModel,List<String> answerCorrectList, List<AnswersPlayerData> answers_players_objects) {
 
         for (AnswersPlayerData user_block : answers_players_objects) {
             if (user_block.playerAnswer0.equals(answerCorrectList.get(0))){

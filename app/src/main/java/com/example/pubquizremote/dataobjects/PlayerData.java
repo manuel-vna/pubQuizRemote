@@ -22,7 +22,6 @@ public class PlayerData {
 
     public PlayerData(String name, String points) {
         this(name,points,null,null,null,null,null,null,null);
-
     }
 
 
