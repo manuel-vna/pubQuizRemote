@@ -1,9 +1,6 @@
 package com.example.pubquizremote.utils;
 
 
-import android.app.Application;
-import android.util.Log;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.pubquizremote.dataobjects.AnswersPlayerData;
 import com.example.pubquizremote.models.AdminSettingsViewModel;
@@ -18,24 +15,9 @@ public class AdminSettingsCalculations extends AppCompatActivity {
     String pre_update_score;
     int new_score;
     Map<String, Object> first_db_level;
-    AdminSettingsViewModel adminSettingsViewModel;
 
 
-    //constructors
-    public AdminSettingsCalculations(){
-        Log.i("Debug_A",
-                "class 'AdminSettingsCalculation' default constructor");
-    }
-    
-    public AdminSettingsCalculations(AdminSettingsViewModel adminSettingsViewModel) {
-        Log.i("Debug_A",
-                "class 'AdminSettingsCalculation' 2nd constructor");
-        adminSettingsViewModel = adminSettingsViewModel;
-    }
-
-
-
-    public void set_initial_db_structure(){
+    public void define_initial_db_structure(AdminSettingsViewModel adminSettingsViewModel){
 
         Map<String, Object> third_level_rounds_radio_group_false  = new HashMap<String, Object>() {{
             put("automated_evaluation", "false");
@@ -53,13 +35,11 @@ public class AdminSettingsCalculations extends AppCompatActivity {
             put("round5", third_level_rounds_radio_group_false);
             put("round6", third_level_rounds_radio_group_true);
         }};
-
         first_db_level  = new HashMap<String, Object>() {{
             put("player_data", "");
             put("global_game_data", second_level_rounds);
         }};
-
-        adminSettingsViewModel.write_initial_db_structure(first_db_level);
+        adminSettingsViewModel.write_to_firebase_initial_structure(first_db_level);
     }
 
 
@@ -87,9 +67,10 @@ public class AdminSettingsCalculations extends AppCompatActivity {
             }
             pre_update_score = user_block.points;
             new_score = Integer.parseInt(pre_update_score) + round_score;
-            adminSettingsViewModel.set_points_in_db(user_block.uid,new_score);
+            adminSettingsViewModel.write_to_firebase_points(user_block.uid,new_score);
             round_score = 0;
         }
-
     }
+
 }
+

@@ -19,6 +19,7 @@ import java.util.Map;
 
 public class AdminSettingsViewModel extends ViewModel {
 
+    //database
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://pub-quiz-remote-default-rtdb.europe-west1.firebasedatabase.app");
     FirebaseAuth auth = FirebaseAuth.getInstance();
     String uid;
@@ -36,20 +37,26 @@ public class AdminSettingsViewModel extends ViewModel {
     DataSnapshot user_block;
     DataSnapshot round;
 
-    //calculating points
-    int new_score;
-
     //instantiation
-    AdminSettingsCalculations adminSettingsCalculations = new AdminSettingsCalculations(this);
+    AdminSettingsCalculations adminSettingsCalculations = new AdminSettingsCalculations();
+
+    //data fields
+    int new_score;
+    Map<String, Object> first_db_level;
 
 
-    public void write_initial_db_structure(Map<String, Object> first_db_level){
-        ref_db_first_level.setValue(first_db_level);
+
+    public void get_from_AdminSettingsCalulation_initial_structure(){
+        adminSettingsCalculations.define_initial_db_structure(new AdminSettingsViewModel());
+    }
+    public void write_to_firebase_initial_structure(Map<String, Object> first_db_level){
+        //ref_db_first_level.setValue(first_db_level);
+        Log.i("Debug_A", String.valueOf(first_db_level));
     }
 
 
-    public void evaluate_results_of_round() {
-        readData(new FirebaseDBCallback() {
+    public void get_from_firebase_round_results_startpoint(String current_round) {
+        get_from_firebase_round_results_reading(current_round,new FirebaseDBCallback() {
             @Override
             public void onCallback(List<String> list1,List<AnswersPlayerData> list2) {
                 answerCorrectList = list1;
@@ -63,7 +70,8 @@ public class AdminSettingsViewModel extends ViewModel {
         });
     }
 
-    private void readData(FirebaseDBCallback firebaseDBCallback) {
+
+    private void get_from_firebase_round_results_reading(String current_round,FirebaseDBCallback firebaseDBCallback) {
 
         DatabaseReference ref_round = database.getReference();
         ref_round.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -78,7 +86,7 @@ public class AdminSettingsViewModel extends ViewModel {
                         if (level1.getKey().toString().equals("global_game_data")){
 
 
-                            for (DataSnapshot a : level1.child("round1").getChildren()){
+                            for (DataSnapshot a : level1.child(current_round).getChildren()){
                                 if (a.child("answerCorrect").exists()) {
                                     answerCorrectList.add(a.child("answerCorrect").getValue().toString());
                                 }
@@ -87,7 +95,7 @@ public class AdminSettingsViewModel extends ViewModel {
                         if (level1.getKey().toString().equals("player_data")) {
                             for (DataSnapshot user_block : level1.getChildren()) {
                                 row.clear();
-                                for (DataSnapshot round : user_block.child("round1").getChildren()) {
+                                for (DataSnapshot round : user_block.child(current_round).getChildren()) {
                                     row.add(round.getValue().toString());
                                 }
                                 if (row != null && user_block != null) {
@@ -107,7 +115,8 @@ public class AdminSettingsViewModel extends ViewModel {
         void onCallback(List<String> list1,List<AnswersPlayerData> list2);
     }
 
-    public void set_points_in_db(String uid,int new_score){
+
+    public void write_to_firebase_points(String uid,int new_score){
         database.getReference().child("player_data").child(uid).child("points").setValue(String.valueOf(new_score));
     }
 

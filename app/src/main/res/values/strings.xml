@@ -12,18 +12,22 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_desc">Navigation header</string>
 
+    <!-- Activity: AdminSettings -->
     <string name="adminSettings">Admin Settings</string>
     <string name="buttonInitialiseDB">Datenbank initialisieren</string>
     <string name="buttonAddQuestion">Frage hinzufügen</string>
     <string name="buttonCalculateRound">Runde auswerten</string>
+    <string name="NoRoundNumberErrorMessage">"Bitte eine Runde eingeben!"</string>
     <string name="buttonBackfromAdminSettings">Zurück</string>
     <string name="editTextQuestion">Frage</string>
     <string name="editTextCorrectAnswer">Korrekte Antwort</string>
     <string name="editTextquestionNo">Nummer der Frage</string>
     <string name="editTextRound">Frage-Runde</string>
 
+    <!-- Settings Menu -->
     <string name="settings">Settings</string>
     <string name="logout">Logout</string>
+
 
     <string name="menu_home">Info</string>
     <string name="menu_roundOne">1. Runde</string>
@@ -59,8 +63,6 @@
 
     <!-- Messages to Users-->
     <string name="messagetoUser_answers_incomplete">Es sind noch nicht alle 6 Fragen beantwortet!</string>
-
-
 
 
     <!-- Spinner Field in: AdminSwttingsActivity -->

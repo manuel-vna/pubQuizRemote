@@ -4,6 +4,6 @@ import junit.framework.TestCase;
 
 public class AdminSettingsViewModelTest extends TestCase {
 
-    public void testEvaluate_results_of_round() {
+    public void testget_from_firebase_round_results_startpoint() {
     }
 }
