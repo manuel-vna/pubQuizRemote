@@ -72,8 +72,11 @@ public class AbcdRoundFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        /*
         Bundle bundle = getArguments();
         String current_round = bundle.getString("message");
+        */
+        String current_round =  getString(R.string.abcd_round);
 
 
         sharedRoundsViewModel = new ViewModelProvider(this).get(SharedRoundsViewModel.class);

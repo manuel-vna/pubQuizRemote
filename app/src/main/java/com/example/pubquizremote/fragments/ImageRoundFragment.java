@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.pubquizremote.R;
 import com.example.pubquizremote.dataobjects.AnswersPlayerData;
 import com.example.pubquizremote.dataobjects.QuestionData;
 import com.example.pubquizremote.models.SharedRoundsViewModel;
@@ -62,12 +63,15 @@ public class ImageRoundFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        /*
         Bundle bundle = getArguments();
         String current_round = bundle.getString("message");
         Log.i("Debug_A", "ABCD Fragment - current_round: "+current_round);
+         */
+        String current_round =  getString(R.string.image_round);
 
         sharedRoundsViewModel = new ViewModelProvider(this).get(SharedRoundsViewModel.class);
-        sharedRoundsViewModel.get_data("round2");
+        sharedRoundsViewModel.get_data(current_round);
 
         final Observer<List<QuestionData>> resultObserver = new Observer<List<QuestionData>>(){
             @Override

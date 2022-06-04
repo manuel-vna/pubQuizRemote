@@ -1,10 +1,17 @@
 <resources>
     <string name="app_name">pubQuizRemote</string>
 
+    <!-- Allocation: Category type <-> round number -->
+    <string name="abcd_round">round1</string>
+    <string name="image_round">round2</string>
+
+
     <string name="round1">nav_round_one</string>
     <string name="round2">nav_image_round</string>
 
+
     <string name="buttonSignIn">Sign in with Google</string>
+
 
     <string name="webClientId">905660080461-pfde0t9t3lrpkvppd2jakhroqoiqesur.apps.googleusercontent.com</string>
     <string name="title_activity_logged_in_home">LoggedInHomeActivity</string>

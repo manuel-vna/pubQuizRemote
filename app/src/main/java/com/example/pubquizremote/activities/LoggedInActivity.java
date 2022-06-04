@@ -33,14 +33,11 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class LoggedInActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class LoggedInActivity extends AppCompatActivity { //implements NavigationView.OnNavigationItemSelectedListener {
 
     private AppBarConfiguration mAppBarConfiguration;
     private NavLoggedInDrawerLayoutBinding binding;
     private TextView navigationDrawerPoints;
-    private String current_round;
-    Fragment fragment;
-    Bundle b;
     FirebaseAuth auth;
     String uid;
 
@@ -54,8 +51,6 @@ public class LoggedInActivity extends AppCompatActivity implements NavigationVie
 
         auth = FirebaseAuth.getInstance();
         String uid = auth.getCurrentUser().getUid();
-        //FirebaseDatabase database = FirebaseDatabase.getInstance("https://pub-quiz-remote-default-rtdb.europe-west1.firebasedatabase.app");
-
 
         setSupportActionBar(binding.appBarLoggedInHome.toolbar);
         binding.appBarLoggedInHome.fab.setOnClickListener(new View.OnClickListener() {
@@ -80,8 +75,6 @@ public class LoggedInActivity extends AppCompatActivity implements NavigationVie
 
         setFieldsHeaderView(navigationView,uid);
 
-        setNavigationViewListener();
-
     }
 
     private void setFieldsHeaderView(NavigationView navigationView,String uid) {
@@ -100,7 +93,6 @@ public class LoggedInActivity extends AppCompatActivity implements NavigationVie
     }
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -115,41 +107,6 @@ public class LoggedInActivity extends AppCompatActivity implements NavigationVie
                 || super.onSupportNavigateUp();
     }
 
-
-    private void setNavigationViewListener() {
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-    }
-
-
-    void fragment_transaction(String current_round, Fragment fragment){
-        Bundle b = new Bundle();
-        b.putString("message", current_round);
-        fragment.setArguments(b);
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.nav_host_fragment, fragment);
-        ft.commit();
-        binding.drawerLayout.closeDrawers();
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.nav_infopage: {
-                fragment_transaction("round0",new HomeFragment());
-                break;
-            }
-            case R.id.nav_round1: {
-                fragment_transaction("round1",new AbcdRoundFragment());
-                break;
-            }
-            case R.id.nav_round2: {
-                fragment_transaction("round2",new ImageRoundFragment());
-                break;
-            }
-        }
-        return true;
-    }
 
 
     @Override
