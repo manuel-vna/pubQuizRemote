@@ -25,7 +25,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.pubquizremote.databinding.ActivityLoggedInHomeBinding;
+import com.example.pubquizremote.databinding.NavLoggedInDrawerLayoutBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ import java.util.List;
 public class LoggedInActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private ActivityLoggedInHomeBinding binding;
+    private NavLoggedInDrawerLayoutBinding binding;
     private TextView navigationDrawerPoints;
     private String current_round;
     Fragment fragment;
@@ -49,7 +49,7 @@ public class LoggedInActivity extends AppCompatActivity implements NavigationVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityLoggedInHomeBinding.inflate(getLayoutInflater());
+        binding = NavLoggedInDrawerLayoutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         auth = FirebaseAuth.getInstance();
@@ -70,7 +70,7 @@ public class LoggedInActivity extends AppCompatActivity implements NavigationVie
         NavigationView navigationView = binding.navView;
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_infopage, R.id.nav_round1, R.id.nav_round2, R.id.nav_round3,R.id.nav_round4)
+                R.id.nav_infopage, R.id.nav_round1, R.id.nav_round2)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -145,14 +145,6 @@ public class LoggedInActivity extends AppCompatActivity implements NavigationVie
             }
             case R.id.nav_round2: {
                 fragment_transaction("round2",new ImageRoundFragment());
-                break;
-            }
-            case R.id.nav_round3: {
-                fragment_transaction("round3",new ImageRoundFragment());
-                break;
-            }
-            case R.id.nav_round4: {
-                fragment_transaction("round4",new ImageRoundFragment());
                 break;
             }
         }
