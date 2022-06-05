@@ -11,91 +11,77 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.35" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineQuestionChoice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.02" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineTableTop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.05" />
+        app:layout_constraintGuide_percent="0.34" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineTableVerticalLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.05" />
+        app:layout_constraintGuide_percent="0.03" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineTableVerticalRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_percent="0.97" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelinePicRow1Bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.06" />
+        app:layout_constraintGuide_percent="0.02" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelinePicRow1Top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.23" />
+        app:layout_constraintGuide_percent="0.25" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelinePicRow2Top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.25" />
+        app:layout_constraintGuide_percent="0.27" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelinePicRow2Bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.42" />
+        app:layout_constraintGuide_percent="0.46" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelinePicRow3Bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.46" />
+        app:layout_constraintGuide_percent="0.48" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelinePicColumn1Right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.08" />
+        app:layout_constraintGuide_percent="0.06" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelinePicColumn2Right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.38" />
+        app:layout_constraintGuide_percent="0.37" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelinePicColumn3Right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.68" />
+        app:layout_constraintGuide_percent="0.67" />
 
     <ImageView
         android:id="@+id/pic1"
@@ -113,9 +99,9 @@
         android:layout_height="wrap_content"
         android:tag="pic2"
         app:layout_constraintBottom_toTopOf="@+id/guidelinePicRow1Top"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9"
+        app:layout_constraintEnd_toStartOf="@+id/PicNoThree"
         app:layout_constraintStart_toEndOf="@+id/PicNoTwo"
-        app:layout_constraintTop_toTopOf="@+id/guidelineTableTop" />
+        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow1Bottom" />
 
     <ImageView
         android:id="@+id/pic3"
@@ -143,7 +129,7 @@
         android:layout_height="wrap_content"
         android:tag="pic5"
         app:layout_constraintBottom_toTopOf="@+id/guidelinePicRow2Bottom"
-        app:layout_constraintEnd_toStartOf="@+id/PicNoSix"
+        app:layout_constraintEnd_toStartOf="@+id/guidelinePicColumn3Right"
         app:layout_constraintStart_toEndOf="@+id/PicNoFive"
         app:layout_constraintTop_toTopOf="@+id/guidelinePicRow1Top" />
 
@@ -175,7 +161,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guidelinePicRow1Top"
         app:layout_constraintEnd_toStartOf="@+id/guidelinePicColumn2Right"
         app:layout_constraintStart_toStartOf="@+id/guidelineVerticalMiddle"
-        app:layout_constraintTop_toTopOf="@+id/guidelineTableTop" />
+        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow1Bottom" />
 
     <TextView
         android:id="@+id/PicNoThree"
@@ -183,8 +169,8 @@
         android:layout_height="wrap_content"
         android:text="@string/PicNoThree"
         app:layout_constraintBottom_toTopOf="@+id/guidelinePicRow1Top"
-        app:layout_constraintEnd_toStartOf="@+id/guidelinePicColumn3Right"
-        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintEnd_toStartOf="@+id/guideline9"
+        app:layout_constraintStart_toStartOf="@+id/guidelinePicColumn3Right"
         app:layout_constraintTop_toTopOf="@+id/guidelinePicRow1Bottom" />
 
     <TextView
@@ -213,96 +199,23 @@
         android:layout_height="wrap_content"
         android:text="@string/PicNoSix"
         app:layout_constraintBottom_toTopOf="@+id/guidelinePicRow2Bottom"
-        app:layout_constraintEnd_toStartOf="@+id/guidelinePicColumn3Right"
-        app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow1Top" />
-
-    <TextView
-        android:id="@+id/Label1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text=""
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/spinnerAnswerOptions1"
-        app:layout_constraintEnd_toStartOf="@+id/spinnerAnswerOptions1"
-        app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeft"
-        tools:text="1" />
-
-    <TextView
-        android:id="@+id/Label2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text=""
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/spinnerAnswerOptions2"
-        app:layout_constraintEnd_toStartOf="@+id/spinnerAnswerOptions2"
-        app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeft"
-        tools:text="2" />
-
-    <TextView
-        android:id="@+id/Label3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text=""
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/spinnerAnswerOptions3"
-        app:layout_constraintEnd_toStartOf="@+id/spinnerAnswerOptions3"
-        app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeft"
-        tools:text="3" />
-
-    <TextView
-        android:id="@+id/Label4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text=""
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/spinnerAnswerOptions4"
-        app:layout_constraintEnd_toStartOf="@+id/spinnerAnswerOptions4"
-        app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeft"
-        tools:text="4" />
-
-    <TextView
-        android:id="@+id/Label5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text=""
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/spinnerAnswerOptions5"
-        app:layout_constraintEnd_toStartOf="@+id/spinnerAnswerOptions5"
-        app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeft"
-        tools:text="5" />
-
-    <TextView
-        android:id="@+id/Label6"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text=""
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/spinnerAnswerOptions6"
-        app:layout_constraintEnd_toStartOf="@+id/spinnerAnswerOptions6"
-        app:layout_constraintStart_toStartOf="@+id/guidelineTableVerticalLeft"
-        tools:layout_editor_absoluteX="106dp"
-        tools:layout_editor_absoluteY="66dp"
-        tools:text="6" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline9"
+        app:layout_constraintStart_toStartOf="@+id/guidelinePicColumn3Right"
+        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow2Top" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.85" />
+        app:layout_constraintGuide_percent="0.87" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/verticalMiddle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
     <Button
         android:id="@+id/UserSaveAnswersImageRound"
@@ -319,76 +232,79 @@
         android:id="@+id/spinnerAnswerOptions1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:gravity="center"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
-        app:layout_constraintTop_toBottomOf="@+id/guidelinePicRow3Bottom" />
+        app:layout_constraintBottom_toBottomOf="@+id/textView1"
+        app:layout_constraintEnd_toStartOf="@+id/verticalMiddle"
+        app:layout_constraintTop_toTopOf="@+id/textView1"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Spinner
         android:id="@+id/spinnerAnswerOptions2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerAnswerOptions3"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerAnswerOptions1" />
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintEnd_toStartOf="@+id/verticalMiddle"
+        app:layout_constraintTop_toTopOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Spinner
         android:id="@+id/spinnerAnswerOptions3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerAnswerOptions4"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerAnswerOptions2" />
+        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+        app:layout_constraintEnd_toStartOf="@+id/verticalMiddle"
+        app:layout_constraintTop_toTopOf="@+id/textView3" />
 
     <Spinner
         android:id="@+id/spinnerAnswerOptions4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerAnswerOptions5"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerAnswerOptions3" />
+        tools:layout_editor_absoluteY="218dp" />
 
     <Spinner
         android:id="@+id/spinnerAnswerOptions5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerAnswerOptions6"
+        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+        app:layout_constraintTop_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerAnswerOptions4" />
+        tools:layout_editor_absoluteY="273dp" />
 
     <Spinner
         android:id="@+id/spinnerAnswerOptions6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toBottomOf="@id/guideline2"
+        app:layout_constraintBottom_toBottomOf="@+id/textView6"
+        app:layout_constraintTop_toTopOf="@+id/textView6"
         app:layout_constraintEnd_toStartOf="@+id/guidelineTableVerticalRight"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerAnswerOptions5" />
+        tools:layout_editor_absoluteY="313dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.65" />
+        app:layout_constraintGuide_percent="0.7" />
 
     <TextView
         android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toStartOf="@+id/spinnerAnswerOptions1"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guidelinePicColumn1Right"
-        app:layout_constraintTop_toTopOf="@+id/guidelinePicRow3Bottom" />
+        app:layout_constraintTop_toBottomOf="@+id/guidelinePicRow3Bottom" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
@@ -399,10 +315,10 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/spinnerAnswerOptions3"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guidelinePicColumn1Right"
@@ -410,35 +326,32 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toStartOf="@+id/spinnerAnswerOptions4"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guidelinePicColumn1Right"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintStart_toStartOf="@+id/verticalMiddle"
+        app:layout_constraintTop_toBottomOf="@+id/guidelinePicRow3Bottom" />
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/textView6"
         app:layout_constraintEnd_toStartOf="@+id/spinnerAnswerOptions5"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guidelinePicColumn1Right"
+        app:layout_constraintStart_toStartOf="@+id/verticalMiddle"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/UserSaveAnswersImageRound"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/spinnerAnswerOptions6"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guidelinePicColumn1Right"
+        app:layout_constraintStart_toStartOf="@+id/verticalMiddle"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
 
