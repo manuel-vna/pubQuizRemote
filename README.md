@@ -11,6 +11,7 @@ The submitted answers of the quiz players can be calculated automatically into p
 The app doesn't serve as a service to host quiz games but it can be seen as a sample of building one's own quiz app.
 The app is set up as following:
 
+<br>
 
 ### Concepts / Architecture Components
 
@@ -18,23 +19,17 @@ The app is set up as following:
 - Data Storing: Firebase Database, SharedPreferences
 - Architecture: MVVM (ViewModel), Activity/Fragments
 
-
 <br>
 
 ### Libraries
 
-- #### Firebase
-
 - #### Picasso
  Downloads the images from the Firebase database and to cache them locally.
 
+- #### Firebase
+Google Cloud Database. No feature in use for encrypting or hiding the 'Firebase API key' since it serves as a resource locator only.
+Access to the Firebase Realtime Database is handled and secured via 'Firebase Security Rules'.
+
 <br>
 
-### Decisions
-
-<br>
-
- ##TBD
-
- - Hide api key and similar private information before switching this project to github-public.
 

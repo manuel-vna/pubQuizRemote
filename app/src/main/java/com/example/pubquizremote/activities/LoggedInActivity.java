@@ -118,7 +118,7 @@ public class LoggedInActivity extends AppCompatActivity { //implements Navigatio
                 return true;
             case R.id.adminSettings:
                 List<String> uid_admin_list = new ArrayList<String>();
-                uid_admin_list.addAll(Arrays.asList("RNo7Y78aQxfRMw7Gx3sqJe6htaw2","RqjdhEXaqhfF3ECQtOrEvV4henp2"));
+                uid_admin_list.addAll(Arrays.asList("RNo7Y78aQxfRMw7Gx3sqJe6htaw2")); //"RqjdhEXaqhfF3ECQtOrEvV4henp2"
                 String uid = auth.getCurrentUser().getUid();
                 //if (uid.equals("RqjdhEXaqhfF3ECQtOrEvV4henp2")) {
                 if (uid_admin_list.contains(uid)){
