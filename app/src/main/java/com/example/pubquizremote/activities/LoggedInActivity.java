@@ -2,6 +2,7 @@ package com.example.pubquizremote.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
@@ -127,7 +128,11 @@ public class LoggedInActivity extends AppCompatActivity { //implements Navigatio
                     startActivity(intentAdmin);
                 }
                 else {
-                    Toast.makeText(getApplicationContext(),"You are not registered as an admin user", Toast.LENGTH_LONG).show();
+                    Toast toast = Toast.makeText(getApplicationContext(), "ADMIN user permissions required", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    View toastView = toast.getView();
+                    toastView.setBackgroundResource(R.drawable.toast_drawable_background_color);
+                    toast.show();
                 }
                 return true;
             case R.id.logout:

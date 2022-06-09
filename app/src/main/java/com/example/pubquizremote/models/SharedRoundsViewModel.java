@@ -39,8 +39,10 @@ public class SharedRoundsViewModel extends ViewModel {
     public MutableLiveData<List<QuestionData>> questionDataList2 = new MutableLiveData<>();
     Integer count;
     String uid = auth.getCurrentUser().getUid();
+    int player_points;
 
     String points;
+
 
     public MutableLiveData<List<QuestionData>> getResult(){
         return questionDataList2;
