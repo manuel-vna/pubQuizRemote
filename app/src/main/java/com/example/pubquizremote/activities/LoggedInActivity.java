@@ -18,8 +18,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -41,6 +43,9 @@ public class LoggedInActivity extends AppCompatActivity { //implements Navigatio
     private TextView navigationDrawerPoints;
     FirebaseAuth auth;
     String uid;
+    private SharedRoundsViewModel sharedRoundsViewModel;
+
+    public String navigationDrawerPointsString;
 
 
     @Override
@@ -74,13 +79,14 @@ public class LoggedInActivity extends AppCompatActivity { //implements Navigatio
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
-        setFieldsHeaderView(navigationView,uid);
+        setNavigationDrawerHeader(navigationView,uid);
 
     }
 
-    private void setFieldsHeaderView(NavigationView navigationView,String uid) {
 
-        // set player NAME in NavigationView header
+
+    private void setNavigationDrawerHeader(NavigationView navigationView,String uid) {
+
         View headerView = navigationView.getHeaderView(0);
         GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
         if (signInAccount != null) {
@@ -89,9 +95,19 @@ public class LoggedInActivity extends AppCompatActivity { //implements Navigatio
         }
 
         SharedRoundsViewModel sharedRoundsViewModel = new SharedRoundsViewModel();
-        sharedRoundsViewModel.current_player_points(headerView);
+        sharedRoundsViewModel.GetDataForNavigationDrawerHeader(headerView);
 
+        final Observer<String> resultObserver2 = new Observer<String>(){
+            @Override
+            public void onChanged(@Nullable final String result){
+                navigationDrawerPointsString = result;
+                TextView navigationDrawerPoints = (TextView) headerView.findViewById(R.id.NavigationDrawerPoints);
+                navigationDrawerPoints.setText("Aktuelle Punktzahl: " +  navigationDrawerPointsString);
+            }
+        };
+        sharedRoundsViewModel.getNavigationDrawerPoints().observe(this,resultObserver2);
     }
+
 
 
     @Override
@@ -107,7 +123,6 @@ public class LoggedInActivity extends AppCompatActivity { //implements Navigatio
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
 
 
     @Override

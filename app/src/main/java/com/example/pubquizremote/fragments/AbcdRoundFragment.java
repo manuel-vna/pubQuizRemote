@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TableLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pubquizremote.dataobjects.AnswersPlayerData;
@@ -80,7 +81,7 @@ public class AbcdRoundFragment extends Fragment {
 
 
         sharedRoundsViewModel = new ViewModelProvider(this).get(SharedRoundsViewModel.class);
-        sharedRoundsViewModel.get_data(current_round);
+        sharedRoundsViewModel.getDataQuestionsAndAnswers(current_round);
 
         AnswersPlayerData answersPlayer = new AnswersPlayerData();
 
@@ -191,6 +192,8 @@ public class AbcdRoundFragment extends Fragment {
             }
         });
 
+
+
     }
 
 
@@ -208,5 +211,6 @@ public class AbcdRoundFragment extends Fragment {
         binding.answerOptions1.check(radioButtonToSet);
 
     }
+
 
 }

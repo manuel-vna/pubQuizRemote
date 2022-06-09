@@ -2,13 +2,9 @@ package com.example.pubquizremote.models;
 
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import com.example.pubquizremote.R;
 import com.example.pubquizremote.dataobjects.AnswersPlayerData;
 import com.example.pubquizremote.dataobjects.QuestionData;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,7 +15,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,29 +31,28 @@ public class SharedRoundsViewModel extends ViewModel {
     private String answerOptionC;
     private String questionNo;
     public List<QuestionData> questionDataList = new ArrayList<QuestionData>();
-    public MutableLiveData<List<QuestionData>> questionDataList2 = new MutableLiveData<>();
+    public MutableLiveData<List<QuestionData>> questionDataListLiveData = new MutableLiveData<>();
+    public MutableLiveData<String> navigationDrawerPoints = new MutableLiveData<>();
     Integer count;
     String uid = auth.getCurrentUser().getUid();
-    int player_points;
 
-    String points;
 
 
     public MutableLiveData<List<QuestionData>> getResult(){
-        return questionDataList2;
+        return questionDataListLiveData;
     }
+    public MutableLiveData<String> getNavigationDrawerPoints(){ return navigationDrawerPoints; }
 
 
-    public void get_data(String round) {
+
+    public void getDataQuestionsAndAnswers(String round) {
         read_data(round, new LoadDataCallback() {
             @Override
             public void onCallback(List<QuestionData> qdList,String round) {
-                questionDataList = qdList;
-                questionDataList2.setValue(questionDataList);
+                questionDataListLiveData.setValue(qdList);
             }
         });
     }
-
     public void read_data(String round, LoadDataCallback loadDataCallback){
 
         count = 0;
@@ -113,33 +107,25 @@ public class SharedRoundsViewModel extends ViewModel {
 
 
     public void safe_player_answers_to_db(String current_round, AnswersPlayerData answersPlayer) {
-        //String uid = auth.getCurrentUser().getUid();
         DatabaseReference ref_player_answers = database.getReference("player_data").child(uid).child(current_round);
         ref_player_answers.setValue(answersPlayer);
 
     }
 
-    public void current_player_points(View headerView) {
-
-        // set player POINTS in NavigationView header
+    public void GetDataForNavigationDrawerHeader(View headerView) {
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the UI
-                String points = dataSnapshot.getValue(String.class);
-                TextView navigationDrawerPoints = (TextView) headerView.findViewById(R.id.NavigationDrawerPoints);
-                navigationDrawerPoints.setText("Aktuelle Punktzahl: " + points);
+                navigationDrawerPoints.setValue(dataSnapshot.getValue(String.class));
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
                 Log.w("Debug_A", "loadingPoints:onCancelled", databaseError.toException());
             }
         };
         DatabaseReference ref_uid = database.getReference("player_data").child(uid).child("points");
         ref_uid.addValueEventListener(postListener);
-
     }
+
 
 }

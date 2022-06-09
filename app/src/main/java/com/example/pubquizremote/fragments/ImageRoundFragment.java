@@ -71,7 +71,7 @@ public class ImageRoundFragment extends Fragment {
         String current_round =  getString(R.string.image_round);
 
         sharedRoundsViewModel = new ViewModelProvider(this).get(SharedRoundsViewModel.class);
-        sharedRoundsViewModel.get_data(current_round);
+        sharedRoundsViewModel.getDataQuestionsAndAnswers(current_round);
 
         final Observer<List<QuestionData>> resultObserver = new Observer<List<QuestionData>>(){
             @Override
