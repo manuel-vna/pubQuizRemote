@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.example.pubquizremote.dataobjects.AnswersPlayerData;
+import com.example.pubquizremote.dataobjects.PlayerData;
 import com.example.pubquizremote.dataobjects.QuestionData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -35,6 +36,11 @@ public class SharedRoundsViewModel extends ViewModel {
     public MutableLiveData<String> navigationDrawerPoints = new MutableLiveData<>();
     Integer count;
     String uid = auth.getCurrentUser().getUid();
+    public List<PlayerData> pointsDataList = new ArrayList<PlayerData>();
+    public MutableLiveData<List<PlayerData>> pointsDataListLiveData = new MutableLiveData<>();
+    private String playerName;
+    private String playerPoints;
+
 
 
 
@@ -42,18 +48,19 @@ public class SharedRoundsViewModel extends ViewModel {
         return questionDataListLiveData;
     }
     public MutableLiveData<String> getNavigationDrawerPoints(){ return navigationDrawerPoints; }
+    public MutableLiveData<List<PlayerData>> getPointsDataListLiveData(){ return pointsDataListLiveData; }
 
 
 
     public void getDataQuestionsAndAnswers(String round) {
-        read_data(round, new LoadDataCallback() {
+        readDataQuestionAndAnswers(round, new QuestionsDataCallback() {
             @Override
             public void onCallback(List<QuestionData> qdList,String round) {
                 questionDataListLiveData.setValue(qdList);
             }
         });
     }
-    public void read_data(String round, LoadDataCallback loadDataCallback){
+    public void readDataQuestionAndAnswers(String round, QuestionsDataCallback questionsDataCallback){
 
         count = 0;
         DatabaseReference ref_round = database.getReference("global_game_data").child(round);
@@ -94,14 +101,13 @@ public class SharedRoundsViewModel extends ViewModel {
                             }
                         }
                     }
-                    loadDataCallback.onCallback(questionDataList,round);
+                    questionsDataCallback.onCallback(questionDataList,round);
                 }
             }
         });
-
     }
 
-    private interface LoadDataCallback {
+    private interface QuestionsDataCallback {
         void onCallback(List<QuestionData> qdList,String round);
     }
 
@@ -112,7 +118,8 @@ public class SharedRoundsViewModel extends ViewModel {
 
     }
 
-    public void GetDataForNavigationDrawerHeader(View headerView) {
+    
+    public void getDataForNavigationDrawerHeader(View headerView) {
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -126,6 +133,41 @@ public class SharedRoundsViewModel extends ViewModel {
         DatabaseReference ref_uid = database.getReference("player_data").child(uid).child("points");
         ref_uid.addValueEventListener(postListener);
     }
+
+
+
+    public void getDataForPlayerScoreTable() {
+        readDataPlayerPoints(new PlayerPointsCallback() {
+            @Override
+            public void onCallback(List<PlayerData> pdList) {
+                pointsDataListLiveData.setValue(pdList);
+            }
+        });
+    }
+        public void readDataPlayerPoints(PlayerPointsCallback playerPointsCallback){
+            pointsDataList.clear();
+            DatabaseReference ref_player = database.getReference("player_data");
+            ref_player.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        Log.e("Debug_A", "Error getting data", task.getException());
+                    }
+                    else {
+                        for (DataSnapshot player_block : task.getResult().getChildren()) {
+                            playerName = player_block.child("name").getValue().toString();
+                            playerPoints = player_block.child("points").getValue().toString();
+                            pointsDataList.add(new PlayerData(playerName,playerPoints));
+                        }
+                        playerPointsCallback.onCallback(pointsDataList);
+                    }
+                }
+            });
+        }
+        private interface PlayerPointsCallback {
+            void onCallback(List<PlayerData> pdList);
+        }
+
 
 
 }

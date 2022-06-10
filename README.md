@@ -32,4 +32,8 @@ Access to the Firebase Realtime Database is handled and secured via 'Firebase Se
 
 <br>
 
+### Details
 
+- #### MVVM: Repository
+Since there is only one data source (Firebase Realtime Database) there is no Repository class within the MVVM model in use.
+This abstraction seems particularly important when an app uses more than one data sources or manages data locally in parallel.

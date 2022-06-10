@@ -95,7 +95,7 @@ public class LoggedInActivity extends AppCompatActivity { //implements Navigatio
         }
 
         SharedRoundsViewModel sharedRoundsViewModel = new SharedRoundsViewModel();
-        sharedRoundsViewModel.GetDataForNavigationDrawerHeader(headerView);
+        sharedRoundsViewModel.getDataForNavigationDrawerHeader(headerView);
 
         final Observer<String> resultObserver2 = new Observer<String>(){
             @Override
