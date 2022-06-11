@@ -130,7 +130,7 @@ public class LoggedInActivity extends AppCompatActivity { //implements Navigatio
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.settings:
-                Toast.makeText(getApplicationContext(),"settings chosen", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"info chosen", Toast.LENGTH_LONG).show();
                 return true;
             case R.id.adminSettings:
                 List<String> uid_admin_list = new ArrayList<String>();

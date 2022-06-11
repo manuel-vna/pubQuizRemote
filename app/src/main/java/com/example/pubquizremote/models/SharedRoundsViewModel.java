@@ -19,6 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class SharedRoundsViewModel extends ViewModel {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://pub-quiz-remote-default-rtdb.europe-west1.firebasedatabase.app");
@@ -40,8 +41,6 @@ public class SharedRoundsViewModel extends ViewModel {
     public MutableLiveData<List<PlayerData>> pointsDataListLiveData = new MutableLiveData<>();
     private String playerName;
     private String playerPoints;
-
-
 
 
     public MutableLiveData<List<QuestionData>> getResult(){
@@ -115,7 +114,6 @@ public class SharedRoundsViewModel extends ViewModel {
     public void safe_player_answers_to_db(String current_round, AnswersPlayerData answersPlayer) {
         DatabaseReference ref_player_answers = database.getReference("player_data").child(uid).child(current_round);
         ref_player_answers.setValue(answersPlayer);
-
     }
 
     
@@ -167,7 +165,6 @@ public class SharedRoundsViewModel extends ViewModel {
         private interface PlayerPointsCallback {
             void onCallback(List<PlayerData> pdList);
         }
-
 
 
 }
