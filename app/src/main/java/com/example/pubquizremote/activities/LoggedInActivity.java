@@ -44,7 +44,6 @@ public class LoggedInActivity extends AppCompatActivity { //implements Navigatio
     FirebaseAuth auth;
     String uid;
     private SharedRoundsViewModel sharedRoundsViewModel;
-
     public String navigationDrawerPointsString;
 
 

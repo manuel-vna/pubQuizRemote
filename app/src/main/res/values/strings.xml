@@ -1,17 +1,22 @@
 <resources>
     <string name="app_name">pubQuizRemote</string>
 
+
+    <!-- Usage in: AdminSettingsActivity -->
+    <string name="round1">round1</string>
+    <string name="round2">round2</string>
+
+
     <!-- Allocation: Category type <-> round number -->
     <string name="abcd_round">round1</string>
     <string name="image_round">round2</string>
 
-
-    <string name="round1">nav_round_one</string>
-    <string name="round2">nav_image_round</string>
-
+    <!--
+        <string name="round1">nav_round_one</string>
+        <string name="round2">nav_image_round</string>
+    -->
 
     <string name="buttonSignIn">Sign in with Google</string>
-
 
     <string name="webClientId">905660080461-pfde0t9t3lrpkvppd2jakhroqoiqesur.apps.googleusercontent.com</string>
     <string name="title_activity_logged_in_home">LoggedInHomeActivity</string>
@@ -19,7 +24,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_desc">Navigation header</string>
 
-    <!-- Activity: AdminSettings -->
+        <!-- Activity: AdminSettings -->
     <string name="adminSettings">Admin Settings</string>
     <string name="buttonInitialiseDB">Datenbank initialisieren</string>
     <string name="buttonAddQuestion">Frage hinzufügen</string>
@@ -60,6 +65,9 @@
 
     <string name="UserSaveAnswers">Antworten abschicken</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Used in: fragment_home.xml -->
+    <string name="updateScoringTable">Tabelle aktualisieren</string>
 
 
     <!-- Shared Preferences -->
