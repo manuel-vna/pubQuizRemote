@@ -9,6 +9,7 @@ public class PlayerData {
     public String uid;
     public String name;
     public String points;
+    public String role;
     private AnswersPlayerData round1;
     private AnswersPlayerData round2;
     private AnswersPlayerData round3;
@@ -21,14 +22,19 @@ public class PlayerData {
     }
 
     public PlayerData(String name, String points) {
-        this(name,points,null,null,null,null,null,null,null);
+        this(name,points,null,null,null,null,null,null,null,null);
+    }
+
+    public PlayerData(String name, String points,String role) {
+        this(name,points,role,null,null,null,null,null,null,null);
     }
 
 
-    public PlayerData(String name, String points, String uid, AnswersPlayerData round1, AnswersPlayerData round2, AnswersPlayerData round3, AnswersPlayerData round4, AnswersPlayerData round5, AnswersPlayerData round6) {
+    public PlayerData(String name, String points, String role, String uid, AnswersPlayerData round1, AnswersPlayerData round2, AnswersPlayerData round3, AnswersPlayerData round4, AnswersPlayerData round5, AnswersPlayerData round6) {
         this.uid = uid;
         this.name = name;
         this.points = points;
+        this.role = role;
         this.round1 = round1;
         this.round2 = round2;
         this.round3 = round3;

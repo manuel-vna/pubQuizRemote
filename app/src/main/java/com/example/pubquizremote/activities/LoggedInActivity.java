@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.pubquizremote.R;
+import com.example.pubquizremote.adapters.ScoringTableAdapter;
+import com.example.pubquizremote.dataobjects.PlayerData;
 import com.example.pubquizremote.fragments.AbcdRoundFragment;
 import com.example.pubquizremote.fragments.HomeFragment;
 import com.example.pubquizremote.fragments.ImageRoundFragment;
@@ -43,8 +45,9 @@ public class LoggedInActivity extends AppCompatActivity { //implements Navigatio
     private TextView navigationDrawerPoints;
     FirebaseAuth auth;
     String uid;
-    private SharedRoundsViewModel sharedRoundsViewModel;
+    private SharedRoundsViewModel sharedRoundsViewModel = new SharedRoundsViewModel();
     public String navigationDrawerPointsString;
+    String playerRole;
 
 
     @Override
@@ -77,7 +80,6 @@ public class LoggedInActivity extends AppCompatActivity { //implements Navigatio
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-
         setNavigationDrawerHeader(navigationView,uid);
 
     }
@@ -93,7 +95,6 @@ public class LoggedInActivity extends AppCompatActivity { //implements Navigatio
             navigationDrawerPoints.setText(signInAccount.getDisplayName());
         }
 
-        SharedRoundsViewModel sharedRoundsViewModel = new SharedRoundsViewModel();
         sharedRoundsViewModel.getDataForNavigationDrawerHeader(headerView);
 
         final Observer<String> resultObserver2 = new Observer<String>(){
@@ -131,29 +132,39 @@ public class LoggedInActivity extends AppCompatActivity { //implements Navigatio
             case R.id.settings:
                 Toast.makeText(getApplicationContext(),"info chosen", Toast.LENGTH_LONG).show();
                 return true;
+
             case R.id.adminSettings:
-                List<String> uid_admin_list = new ArrayList<String>();
-                uid_admin_list.addAll(Arrays.asList("RNo7Y78aQxfRMw7Gx3sqJe6htaw2")); //"RqjdhEXaqhfF3ECQtOrEvV4henp2"
-                String uid = auth.getCurrentUser().getUid();
-                //if (uid.equals("RqjdhEXaqhfF3ECQtOrEvV4henp2")) {
-                if (uid_admin_list.contains(uid)){
-                    Intent intentAdmin = new Intent(getApplicationContext(), AdminSettingsActivity.class);
-                    intentAdmin.putExtra("uid", uid);
-                    startActivity(intentAdmin);
-                }
-                else {
-                    Toast toast = Toast.makeText(getApplicationContext(), "ADMIN user permissions required", Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    View toastView = toast.getView();
-                    toastView.setBackgroundResource(R.drawable.toast_drawable_background_color);
-                    toast.show();
-                }
+
+                sharedRoundsViewModel.getPlayerRoleForPermissionCheck();
+
+                final Observer<String> resultObserver = new Observer<String>(){
+                    @Override
+                    public void onChanged(@Nullable final String result){
+                        playerRole = result;
+
+                        if(playerRole.equals("admin")){
+                            Intent intentAdmin = new Intent(getApplicationContext(), AdminSettingsActivity.class);
+                            intentAdmin.putExtra("uid", uid);
+                            startActivity(intentAdmin);
+                        }
+                        else {
+                            Toast toast = Toast.makeText(getApplicationContext(), "ADMIN user permissions required", Toast.LENGTH_LONG);
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+                            View toastView = toast.getView();
+                            toastView.setBackgroundResource(R.drawable.toast_drawable_background_color);
+                            toast.show();
+                        }
+                    }
+                };
+                sharedRoundsViewModel.getPlayerRole().observe(this,resultObserver);
                 return true;
+
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
                 Intent intentLogout = new Intent(getApplicationContext(), SignInActivity.class);
                 startActivity(intentLogout);
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -41,6 +41,7 @@ public class SharedRoundsViewModel extends ViewModel {
     public MutableLiveData<List<PlayerData>> pointsDataListLiveData = new MutableLiveData<>();
     private String playerName;
     private String playerPoints;
+    public MutableLiveData<String> playerRole = new MutableLiveData<>();
 
 
     public MutableLiveData<List<QuestionData>> getResult(){
@@ -48,6 +49,7 @@ public class SharedRoundsViewModel extends ViewModel {
     }
     public MutableLiveData<String> getNavigationDrawerPoints(){ return navigationDrawerPoints; }
     public MutableLiveData<List<PlayerData>> getPointsDataListLiveData(){ return pointsDataListLiveData; }
+    public MutableLiveData<String> getPlayerRole(){ return playerRole; }
 
 
 
@@ -133,7 +135,6 @@ public class SharedRoundsViewModel extends ViewModel {
     }
 
 
-
     public void getDataForPlayerScoreTable() {
         readDataPlayerPoints(new PlayerPointsCallback() {
             @Override
@@ -165,6 +166,23 @@ public class SharedRoundsViewModel extends ViewModel {
         private interface PlayerPointsCallback {
             void onCallback(List<PlayerData> pdList);
         }
+
+
+
+    public void getPlayerRoleForPermissionCheck() {
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                playerRole.setValue(dataSnapshot.getValue(String.class));
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w("Debug_A", "loadingPoints:onCancelled", databaseError.toException());
+            }
+        };
+        DatabaseReference ref_uid = database.getReference("player_data").child(uid).child("role");
+        ref_uid.addValueEventListener(postListener);
+    }
 
 
 }

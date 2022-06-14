@@ -65,8 +65,8 @@ public class HomeFragment extends Fragment {
         binding.buttonUpdateScoringTable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(),"Clicked: ScoringTable update",Toast.LENGTH_SHORT).show();
-                //sharedRoundsViewModel.getDataForPlayerScoreTable();
+                //Toast.makeText(getContext(),"Clicked: ScoringTable update",Toast.LENGTH_SHORT).show();
+                sharedRoundsViewModel.getDataForPlayerScoreTable();
             }
         });
 
