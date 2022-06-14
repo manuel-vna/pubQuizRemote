@@ -14,6 +14,7 @@ import com.example.pubquizremote.dataobjects.PlayerData;
 import com.example.pubquizremote.fragments.AbcdRoundFragment;
 import com.example.pubquizremote.fragments.HomeFragment;
 import com.example.pubquizremote.fragments.ImageRoundFragment;
+import com.example.pubquizremote.models.AdminSettingsViewModel;
 import com.example.pubquizremote.models.SharedRoundsViewModel;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -46,6 +47,7 @@ public class LoggedInActivity extends AppCompatActivity { //implements Navigatio
     FirebaseAuth auth;
     String uid;
     private SharedRoundsViewModel sharedRoundsViewModel = new SharedRoundsViewModel();
+    private AdminSettingsViewModel adminSettingsViewModel = new AdminSettingsViewModel();
     public String navigationDrawerPointsString;
     String playerRole;
 
@@ -135,7 +137,7 @@ public class LoggedInActivity extends AppCompatActivity { //implements Navigatio
 
             case R.id.adminSettings:
 
-                sharedRoundsViewModel.getPlayerRoleForPermissionCheck();
+                adminSettingsViewModel.getPlayerRoleForPermissionCheck();
 
                 final Observer<String> resultObserver = new Observer<String>(){
                     @Override
@@ -156,7 +158,7 @@ public class LoggedInActivity extends AppCompatActivity { //implements Navigatio
                         }
                     }
                 };
-                sharedRoundsViewModel.getPlayerRole().observe(this,resultObserver);
+                adminSettingsViewModel.getPlayerRole().observe(this,resultObserver);
                 return true;
 
             case R.id.logout:

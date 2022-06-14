@@ -1,6 +1,7 @@
 package com.example.pubquizremote.models;
 
 
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import android.util.Log;
 import androidx.annotation.NonNull;
@@ -10,8 +11,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +27,8 @@ public class AdminSettingsViewModel extends ViewModel {
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://pub-quiz-remote-default-rtdb.europe-west1.firebasedatabase.app");
     FirebaseAuth auth = FirebaseAuth.getInstance();
     String uid;
+    String uidThisClass = auth.getCurrentUser().getUid();
+
 
     // database references
     DatabaseReference ref_db_first_level = database.getReference();
@@ -43,6 +49,10 @@ public class AdminSettingsViewModel extends ViewModel {
     //data fields
     int new_score;
     Map<String, Object> first_db_level;
+    public MutableLiveData<String> playerRole = new MutableLiveData<>();
+
+    //Live Data wrappers
+    public MutableLiveData<String> getPlayerRole(){ return playerRole; }
 
 
 
@@ -118,6 +128,22 @@ public class AdminSettingsViewModel extends ViewModel {
 
     public void write_to_firebase_points(String uid,int new_score){
         database.getReference().child("player_data").child(uid).child("points").setValue(String.valueOf(new_score));
+    }
+
+
+    public void getPlayerRoleForPermissionCheck() {
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                playerRole.setValue(dataSnapshot.getValue(String.class));
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w("Debug_A", "loadingPoints:onCancelled", databaseError.toException());
+            }
+        };
+        DatabaseReference ref_uid = database.getReference("player_data").child(uidThisClass).child("role");
+        ref_uid.addValueEventListener(postListener);
     }
 
 
