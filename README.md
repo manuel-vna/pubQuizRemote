@@ -1,7 +1,10 @@
 # pubQuizRemote
 
 <br>
-Project status: In Progress
+Project status: 
+In Progress
+Bug: 2022-07-04: bug found that destroys user login routine, currently no user login possible
+
 <br>
 
 ### Description

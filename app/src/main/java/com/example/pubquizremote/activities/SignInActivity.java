@@ -84,6 +84,9 @@ public class SignInActivity extends AppCompatActivity {
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
+
+                    //BUG: resultCode=RESULT_CANCELED, bug kills login routine so no  login possible
+
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         // There are no request codes
                         Intent data = result.getData();
