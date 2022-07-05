@@ -86,6 +86,9 @@ public class SignInActivity extends AppCompatActivity {
                 public void onActivityResult(ActivityResult result) {
 
                     //BUG: resultCode=RESULT_CANCELED, bug kills login routine so no  login possible
+                    Log.i("Debug_A","result: "+result);
+                    Log.i("Debug_A","result.getResultCode(): "+result.getResultCode());
+                    Log.i("Debug_A","Activity.RESULT_OK: "+Activity.RESULT_OK);
 
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         // There are no request codes

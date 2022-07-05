@@ -1,18 +1,27 @@
 {
   "project_info": {
     "project_number": "905660080461",
+    "firebase_url": "https://pub-quiz-remote-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "pub-quiz-remote",
     "storage_bucket": "pub-quiz-remote.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:905660080461:android:432035f4582db0d6501704",
+        "mobilesdk_app_id": "1:905660080461:android:0b94fe45bfda7260501704",
         "android_client_info": {
           "package_name": "com.example.pubquizremote"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "905660080461-ahcpokv9g0bihrg846vicsk9nkdm74pc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pubquizremote",
+            "certificate_hash": "f1d170f92a99ce6fc2dc4d091e253b68c5aaba42"
+          }
+        },
         {
           "client_id": "905660080461-pfde0t9t3lrpkvppd2jakhroqoiqesur.apps.googleusercontent.com",
           "client_type": 3
