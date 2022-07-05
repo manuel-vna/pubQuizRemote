@@ -78,17 +78,11 @@ public class SignInActivity extends AppCompatActivity {
     }
 
 
-
     ActivityResultLauncher<Intent> SignInActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
-
-                    //BUG: resultCode=RESULT_CANCELED, bug kills login routine so no  login possible
-                    Log.i("Debug_A","result: "+result);
-                    Log.i("Debug_A","result.getResultCode(): "+result.getResultCode());
-                    Log.i("Debug_A","Activity.RESULT_OK: "+Activity.RESULT_OK);
 
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         // There are no request codes
@@ -105,6 +99,9 @@ public class SignInActivity extends AppCompatActivity {
                     }
                 }
             });
+
+
+
 
     private void signIn(){
         Intent signInIntent = gsc.getSignInIntent();
